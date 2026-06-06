@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHUNK-jp Tools</title>
+  <style>
+    /* ============================================================
+       基本リセット・変数
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f8fafc;
+      --surface:   #ffffff;
+      --border:    #e2e8f0;
+      --primary:   #0f172a;
+      --accent:    #6366f1;
+      --accent-lt: #eef2ff;
+      --muted:     #64748b;
+      --text:      #1e293b;
+      --radius:    14px;
+      --shadow:    0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ============================================================
+       ナビゲーション
+    ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 56px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.01em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #818cf8;
+    }
+
+    .nav-links { display: flex; gap: 4px; }
+    .nav-link {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: .875rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      text-decoration: none;
+    }
+    .nav-link:hover { background: rgba(255,255,255,.08); color: #e2e8f0; }
+    .nav-link.active { background: rgba(99,102,241,.25); color: #a5b4fc; }
+
+    /* ============================================================
+       ページ切り替え
+    ============================================================ */
+    .page { display: none; flex: 1; }
+    .page.active { display: block; }
+
+    /* ============================================================
+       ヒーローセクション（トップページ）
+    ============================================================ */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 48px 20px 52px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(99,102,241,.3);
+      color: #a5b4fc;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: #818cf8; }
+    .hero p {
+      font-size: .95rem;
+      color: #94a3b8;
+      max-width: 360px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       ツールカードグリッド
+    ============================================================ */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      width: 100%;
+    }
+    .section-title {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ---- ツール追加方法（コメント内に記載） ----
+       TOOLS 配列に以下の形式でオブジェクトを追加するだけです：
+       {
+         icon: '絵文字',
+         title: 'ツール名',
+         desc:  '説明文（1〜2文）',
+         url:   'https://...',
+         tag:   'カテゴリラベル（任意）',
+       }
+    ---- */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .tool-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: #c7d2fe;
+    }
+
+    .tool-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+    .tool-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: var(--accent-lt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .tool-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: #f1f5f9;
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .tool-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .tool-desc {
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .tool-link-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       ギャラリーページ
+    ============================================================ */
+    .gallery-hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 36px 20px 40px;
+      text-align: center;
+    }
+    .gallery-hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .gallery-hero p { font-size: .9rem; color: #94a3b8; }
+
+    /* ---- ギャラリー追加方法（コメント内に記載） ----
+       ① 画像ファイルを gallery/ フォルダに入れる
+       ② 下の GALLERY_IMAGES 配列に以下の形式で追加する：
+          { src: 'gallery/ファイル名.jpg', title: '作品名', desc: '説明（省略可）' }
+       それだけで自動的にグリッドに表示されます。
+    ---- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .gallery-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .gallery-img-wrap {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #f1f5f9;
+      position: relative;
+    }
+    .gallery-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s;
+    }
+    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.04); }
+
+    /* プレースホルダー（画像未設定時） */
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 2px dashed #cbd5e1;
+      color: #94a3b8;
+    }
+    .gallery-placeholder .ph-icon { font-size: 2.2rem; opacity: .5; }
+    .gallery-placeholder .ph-text { font-size: .78rem; font-weight: 500; }
+
+    .gallery-info {
+      padding: 12px 14px;
+    }
+    .gallery-info .g-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .gallery-info .g-desc {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ライトボックス */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ============================================================
+       フッター
+    ============================================================ */
+    footer {
+      background: var(--primary);
+      color: #475569;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: .78rem;
+    }
+    footer a { color: #64748b; text-decoration: none; }
+    footer a:hover { color: #94a3b8; }
+
+    /* ============================================================
+       レスポンシブ
+    ============================================================ */
+    @media (max-width: 480px) {
+      nav { padding: 0 14px; }
+      .hero  { padding: 36px 16px 40px; }
+      .section { padding: 28px 16px; }
+      .gallery-hero { padding: 28px 16px 32px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    }
+    @media (min-width: 768px) {
+      .tools-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     ナビゲーション
+============================================================ -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('tools'); return false;">
+    <div class="logo-dot"></div>
+    CHUNK-jp Tools
+  </a>
+  <div class="nav-links">
+    <button class="nav-link active" id="nav-tools"   onclick="showPage('tools')">ツール</button>
+    <button class="nav-link"        id="nav-gallery" onclick="showPage('gallery')">ギャラリー</button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     ツールページ
+============================================================ -->
+<div id="page-tools" class="page active">
+  <div class="hero">
+    <div class="hero-eyebrow">CHUNK-jp</div>
+    <h1>便利な<span>Webツール</span>集</h1>
+    <p>ブラウザで完結する無料ツールを公開しています。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">利用できるツール</div>
+
+    <!-- ========================================================
+         ツールの追加方法
+         以下の <div class="tool-card"> ブロックをコピーして
+         tools-grid の中に追加してください。
+
+         コピー用テンプレート：
+         <a class="tool-card" href="URL" target="_blank" rel="noopener">
+           <div class="tool-card-top">
+             <div class="tool-icon">絵文字</div>
+             <span class="tool-tag">カテゴリ</span>
+           </div>
+           <div class="tool-title">ツール名</div>
+           <div class="tool-desc">ツールの説明文</div>
+           <div class="tool-link-row">開く →</div>
+         </a>
+    ======================================================== -->
+    <div class="tools-grid" id="toolsGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ギャラリーページ
+============================================================ -->
+<div id="page-gallery" class="page">
+  <div class="gallery-hero">
+    <h1>Gallery</h1>
+    <p>これまでに描いた絵を紹介しています。</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">作品一覧</div>
+
+    <!-- ========================================================
+         画像の追加方法
+         ① gallery/ フォルダに画像ファイルを入れる
+         ② 下の GALLERY_IMAGES 配列に1行追加する
+
+         例：
+         { src: 'gallery/landscape.jpg', title: '風景画', desc: '2024年 水彩' },
+    ======================================================== -->
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</div>
+
+<!-- フッター -->
+<footer>
+  <p>© 2025 <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">CHUNK-jp</a></p>
+</footer>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  /* ==============================================================
+     ツールデータ
+     ── 新しいツールを追加するときはここに追加してください ──
+     フィールド：
+       icon  : 表示する絵文字
+       title : ツール名
+       desc  : 説明文
+       url   : ツールのURL
+       tag   : カテゴリラベル（省略可）
+  ============================================================== */
+  const TOOLS = [
+    {
+      icon:  '🏦',
+      title: 'ローン計算機',
+      desc:  '借入金額・金利・返済期間を入力して月々の返済額や総返済額をグラフで確認できます。',
+      url:   'https://CHUNK-jp.github.io/loan-calculator/',
+      tag:   'ファイナンス',
+    },
+    {
+      icon:  '⚖️',
+      title: 'BMI計算機',
+      desc:  '身長・体重からBMIを算出。適正体重・基礎代謝（BMR）・目標体重まであと何kgかを表示します。',
+      url:   'https://CHUNK-jp.github.io/bmi-calculator/',
+      tag:   'ヘルス',
+    },
+    {
+      icon:  '🔐',
+      title: '文章暗号化ツール',
+      desc:  'AES-256-GCMでテキストをパスワード暗号化・復号。処理はブラウザ内で完結し外部に送信しません。',
+      url:   'https://CHUNK-jp.github.io/encryption-tool/',
+      tag:   'セキュリティ',
+    },
+
+    /* ──────────────────────────────────────────────────────────
+       ↓ 新しいツールはここにコピーして追加してください
+       {
+         icon:  '🛠',
+         title: 'ツール名',
+         desc:  'ツールの説明',
+         url:   'https://CHUNK-jp.github.io/リポジトリ名/',
+         tag:   'カテゴリ',
+       },
+    ────────────────────────────────────────────────────────── */
+  ];
+
+  /* ==============================================================
+     ギャラリーデータ
+     ── 画像を追加するときはここに追加してください ──
+     手順：
+       ① gallery/ フォルダに画像ファイルを置く
+       ② 下の配列に1行追加する
+     フィールド：
+       src   : 'gallery/ファイル名.jpg'（必須）
+       title : 作品名（必須）
+       desc  : 説明・制作年など（省略可）
+  ============================================================== */
+  const GALLERY_IMAGES = [
+    /* 例（コメントを外して使用）:
+    { src: 'gallery/work1.jpg', title: '作品タイトル1', desc: '2024年 水彩' },
+    { src: 'gallery/work2.jpg', title: '作品タイトル2', desc: '2024年 デジタル' },
+    { src: 'gallery/work3.jpg', title: '作品タイトル3', desc: '2025年 油彩' },
+    */
+  ];
+
+  /* ------ 以下はロジック（通常は編集不要） ------ */
+
+  // ツールカードを生成
+  function renderTools() {
+    const grid = document.getElementById('toolsGrid');
+    grid.innerHTML = TOOLS.map(t => `
+      <a class="tool-card" href="${t.url}" target="_blank" rel="noopener">
+        <div class="tool-card-top">
+          <div class="tool-icon">${t.icon}</div>
+          ${t.tag ? `<span class="tool-tag">${t.tag}</span>` : ''}
+        </div>
+        <div class="tool-title">${t.title}</div>
+        <div class="tool-desc">${t.desc}</div>
+        <div class="tool-link-row">開く →</div>
+      </a>
+    `).join('');
+  }
+
+  // ギャラリーを生成（画像が未設定の場合はプレースホルダー3枚）
+  function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    const items = GALLERY_IMAGES.length > 0
+      ? GALLERY_IMAGES
+      : [
+          { src: '', title: '作品1', desc: '画像を追加してください' },
+          { src: '', title: '作品2', desc: '画像を追加してください' },
+          { src: '', title: '作品3', desc: '画像を追加してください' },
+        ];
+
+    grid.innerHTML = items.map((img, i) => `
+      <div class="gallery-item" ${img.src ? `onclick="openLightbox('${img.src}','${img.title}')"` : ''}>
+        <div class="gallery-img-wrap">
+          ${img.src
+            ? `<img src="${img.src}" alt="${img.title}" loading="lazy">`
+            : `<div class="gallery-placeholder">
+                 <div class="ph-icon">🖼</div>
+                 <div class="ph-text">gallery/ に画像を追加</div>
+               </div>`
+          }
+        </div>
+        <div class="gallery-info">
+          <div class="g-title">${img.title}</div>
+          ${img.desc ? `<div class="g-desc">${img.desc}</div>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ページ切り替え
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ライトボックス
+  function openLightbox(src, alt) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxImg').alt = alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // 初期レンダリング
+  renderTools();
+  renderGallery();
+</script>
+</body>
+</html>
