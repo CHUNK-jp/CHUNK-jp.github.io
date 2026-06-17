@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ — CHUNK-jp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d0d0d;
+      --surface: #161616;
+      --border:  #2a2a2a;
+      --text:    #f0f0f0;
+      --gray-400: #737373;
+      --gray-500: #a3a3a3;
+      --gray-700: #d0d0d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, 'Hiragino Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-size: .85rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .06em;
+    }
+
+    .nav-links { display: flex; gap: 4px; }
+
+    .nav-link {
+      padding: 6px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-link:hover { color: var(--gray-700); }
+
+    .hero {
+      padding: 88px 40px 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -.04em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: .88rem;
+      color: var(--gray-500);
+      font-weight: 300;
+      max-width: 400px;
+      line-height: 1.75;
+    }
+
+    .section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 40px 80px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .form-group { margin-bottom: 32px; }
+
+    label {
+      display: block;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, 'Hiragino Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 300;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color .15s;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus { border-color: var(--gray-500); }
+
+    input::placeholder,
+    textarea::placeholder { color: var(--gray-400); }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23737373' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    select option { background: #1a1a1a; }
+
+    textarea { resize: vertical; min-height: 160px; }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--text);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: opacity .15s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover    { opacity: .85; }
+    .btn-submit:disabled { opacity: .4; cursor: not-allowed; }
+
+    .success-msg {
+      display: none;
+      border: 1px solid var(--border);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .success-msg.visible { display: block; }
+    .success-msg .s-icon { font-size: 1.6rem; margin-bottom: 20px; }
+    .success-msg h2 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .success-msg p {
+      font-size: .85rem;
+      color: var(--gray-500);
+      line-height: 1.8;
+    }
+    .success-msg a {
+      color: var(--gray-500);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .15s;
+    }
+    .success-msg a:hover { color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer p {
+      font-size: .7rem;
+      color: var(--gray-400);
+      font-weight: 300;
+      letter-spacing: .06em;
+    }
+    footer a { color: var(--gray-400); text-decoration: none; transition: color .15s; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav      { padding: 0 20px; }
+      .hero    { padding: 60px 20px 52px; }
+      .section { padding: 48px 20px 64px; }
+      footer   { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CHUNK-jp</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">← Tools</a>
+    <a class="nav-link" href="privacy.html">Privacy</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">CHUNK-jp / Contact</div>
+  <h1>Contact.</h1>
+  <p>ご質問・バグ報告・その他のご連絡はこちらからどうぞ。</p>
+</div>
+
+<div class="section">
+  <div class="success-msg" id="successMsg">
+    <div class="s-icon">✓</div>
+    <h2>送信が完了しました</h2>
+    <p>お問い合わせありがとうございます。<br>内容を確認の上、折り返しご連絡いたします。<br><br>
+      <a href="index.html">← Tools に戻る</a>
+    </p>
+  </div>
+
+  <form id="contactForm" action="https://formspree.io/f/mdavvkpy" method="POST">
+    <div class="form-group">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" placeholder="example@email.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="type">お問い合わせ種別</label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>選択してください</option>
+        <option value="tool">ツールについて</option>
+        <option value="bug">バグ・不具合報告</option>
+        <option value="feature">機能リクエスト</option>
+        <option value="other">その他</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">メッセージ</label>
+      <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください。" required></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit" id="submitBtn">送信する</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 CHUNK-jp</p>
+  <p><a href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const btn  = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled    = true;
+    btn.textContent = '送信中…';
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').classList.add('visible');
+      } else {
+        btn.disabled    = false;
+        btn.textContent = '送信する';
+        alert('送信に失敗しました。時間をおいて再度お試しください。');
+      }
+    } catch {
+      btn.disabled    = false;
+      btn.textContent = '送信する';
+      alert('ネットワークエラーが発生しました。');
+    }
+  });
+</script>
+</body>
+</html>

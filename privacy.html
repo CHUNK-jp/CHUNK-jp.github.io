@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー — CHUNK-jp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d0d0d;
+      --surface: #161616;
+      --border:  #2a2a2a;
+      --text:    #f0f0f0;
+      --gray-400: #737373;
+      --gray-500: #a3a3a3;
+      --gray-700: #d0d0d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, 'Hiragino Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-size: .85rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .06em;
+    }
+
+    .nav-links { display: flex; gap: 4px; }
+
+    .nav-link {
+      padding: 6px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-link:hover { color: var(--gray-700); }
+
+    .hero {
+      padding: 88px 40px 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      letter-spacing: -.04em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: .88rem;
+      color: var(--gray-500);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 40px 80px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .policy-block {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .policy-block h2 {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+
+    .policy-block p,
+    .policy-block li {
+      font-size: .9rem;
+      color: var(--gray-500);
+      line-height: 1.9;
+    }
+
+    .policy-block ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+    .policy-block ul li {
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .policy-block ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gray-400);
+    }
+
+    .policy-block a {
+      color: var(--gray-500);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .15s;
+    }
+    .policy-block a:hover { color: var(--text); }
+
+    .updated {
+      font-size: .72rem;
+      color: var(--gray-400);
+      letter-spacing: .06em;
+      margin-top: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer p {
+      font-size: .7rem;
+      color: var(--gray-400);
+      font-weight: 300;
+      letter-spacing: .06em;
+    }
+    footer a { color: var(--gray-400); text-decoration: none; transition: color .15s; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav      { padding: 0 20px; }
+      .hero    { padding: 60px 20px 52px; }
+      .section { padding: 48px 20px 64px; }
+      footer   { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CHUNK-jp</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">← Tools</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">CHUNK-jp / Privacy Policy</div>
+  <h1>Privacy Policy.</h1>
+  <p class="updated">最終更新日：2025年1月1日</p>
+</div>
+
+<div class="section">
+
+  <div class="policy-block">
+    <h2>基本方針</h2>
+    <p>CHUNK-jp（以下「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーは、当サイトにおける情報の収集・利用方法について説明するものです。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>ツールについて</h2>
+    <p>当サイトで提供するすべてのツール（ローン計算機・BMI計算機・文章暗号化ツール等）は、ブラウザ上で完結して動作します。入力されたデータは外部サーバーへ一切送信されず、お使いのデバイスから外部に出ることはありません。</p>
+    <ul>
+      <li>サーバーへのデータ送信：なし</li>
+      <li>入力内容の保存・収集：なし</li>
+      <li>外部へのデータ共有：なし</li>
+    </ul>
+  </div>
+
+  <div class="policy-block">
+    <h2>Google Analytics</h2>
+    <p>当サイトはアクセス解析のため Google Analytics を使用しています。Google Analytics は Cookie を使用して匿名のトラフィックデータ（ページビュー数・滞在時間・アクセス元等）を収集します。収集されたデータは個人を特定するものではなく、サイト改善の目的のみに利用します。</p>
+    <p style="margin-top:12px;">Google のプライバシーポリシーについては <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">こちら</a> をご確認ください。また、Google Analytics のオプトアウトは <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google アナリティクス オプトアウト アドオン</a> からご利用いただけます。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>Google AdSense</h2>
+    <p>当サイトは広告配信サービスとして Google AdSense を使用しています。Google AdSense は、ユーザーの興味に基づいた広告を表示するために Cookie を使用することがあります。第三者配信事業者や広告ネットワークによる Cookie の使用については、各社のプライバシーポリシーをご参照ください。</p>
+    <p style="margin-top:12px;">Google の広告設定については <a href="https://adssettings.google.com/" target="_blank" rel="noopener">広告設定ページ</a> から管理・変更できます。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>Cookieについて</h2>
+    <p>当サイトでは、Google Analytics および Google AdSense の機能提供のために Cookie を使用しています。Cookie はブラウザの設定から無効化することができますが、一部機能が正常に動作しなくなる場合があります。</p>
+    <ul>
+      <li>利用目的：アクセス解析・広告配信</li>
+      <li>取得情報：IPアドレス・ブラウザ情報・閲覧ページ等（匿名）</li>
+      <li>第三者提供：Google Inc.（各ポリシーに基づく範囲内）</li>
+    </ul>
+  </div>
+
+  <div class="policy-block">
+    <h2>お問い合わせ</h2>
+    <p>本ポリシーに関するご質問や、個人情報の取り扱いについてのお問い合わせは <a href="contact.html">お問い合わせページ</a> よりご連絡ください。</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 CHUNK-jp</p>
+  <p><a href="contact.html">お問い合わせ</a></p>
+</footer>
+
+</body>
+</html>
