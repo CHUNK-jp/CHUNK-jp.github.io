@@ -9,20 +9,18 @@
   <meta name="google-site-verification" content="95r7tjU2_62CnA-i4NQ9ec42nfMWHtnusEBP5__3Mmg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:    #0a0a0a;
-      --white:    #ffffff;
-      --gray-50:  #fafafa;
-      --gray-100: #f5f5f5;
-      --gray-200: #e8e8e8;
-      --gray-300: #d0d0d0;
-      --gray-400: #a3a3a3;
-      --gray-500: #737373;
-      --gray-700: #404040;
+      --bg:      #0d0d0d;
+      --bg2:     #141414;
+      --bg3:     #1a1a1a;
+      --border:  #2a2a2a;
+      --text:    #e8e8e8;
+      --muted:   #888;
+      --accent:  #7c6aff;
     }
 
     html { scroll-behavior: smooth; }
@@ -32,115 +30,109 @@
       font-weight: 300;
       font-size: 15px;
       line-height: 1.65;
-      background: var(--white);
-      color: var(--black);
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ============================================================
-       ナビゲーション
-    ============================================================ */
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--gray-200);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
+      padding: 0 2rem;
       height: 56px;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-size: .85rem;
-      font-weight: 400;
-      color: var(--black);
-      text-decoration: none;
-      letter-spacing: .06em;
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--text);
     }
 
-    .nav-links { display: flex; }
-    .nav-link {
-      padding: 6px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .68rem;
-      font-weight: 400;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color .15s;
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
-    .nav-link:hover  { color: var(--gray-700); }
-    .nav-link.active { color: var(--black); }
 
-    /* ============================================================
-       ページ切り替え
-    ============================================================ */
-    .page { display: none; flex: 1; }
-    .page.active { display: block; }
+    .btn-gh {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text);
+      transition: border-color .15s, background .15s;
+    }
+    .btn-gh:hover { border-color: #555; background: #222; }
 
-    /* ============================================================
-       ヒーロー（共通）
-    ============================================================ */
+    /* ─── HERO ─── */
     .hero {
-      padding: 88px 40px 72px;
-      border-bottom: 1px solid var(--gray-200);
+      padding: 5rem 2rem 4rem;
+      border-bottom: 1px solid var(--border);
     }
+
     .hero-label {
       font-size: .65rem;
       font-weight: 400;
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 24px;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
     }
+
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(2.8rem, 7vw, 5rem);
       font-weight: 300;
       letter-spacing: -.04em;
       line-height: 1;
-      color: var(--black);
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
     }
+
     .hero p {
-      font-size: .88rem;
-      color: var(--gray-500);
-      font-weight: 300;
+      font-size: .9rem;
+      color: var(--muted);
       max-width: 400px;
       line-height: 1.75;
     }
 
-    /* ============================================================
-       セクション
-    ============================================================ */
+    /* ─── SECTION ─── */
     .section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 64px 40px 80px;
+      padding: 4rem 2rem 5rem;
       width: 100%;
     }
+
     .section-label {
       font-size: .65rem;
-      font-weight: 400;
-      letter-spacing: .16em;
+      font-weight: 600;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 40px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--gray-200);
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    /* ============================================================
-       ツールグリッド
-
+    /* ─── TOOL CARDS ─── */
+    /*
        ツールの追加方法：
        JS の TOOLS 配列に以下の形式でオブジェクトを追加してください。
        {
@@ -150,98 +142,101 @@
          url:   'https://...',
          tag:   'カテゴリ（任意）',
        }
-    ============================================================ */
+    */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px;                   /* 1pxギャップ＝細い区切り線 */
-      background: var(--gray-200);
-      outline: 1px solid var(--gray-200);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
     }
 
     .tool-card {
-      background: var(--white);
-      padding: 36px 32px 32px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem 1.5rem 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 0.75rem;
       text-decoration: none;
       color: inherit;
-      transition: background .18s;
+      transition: border-color .2s, transform .2s;
     }
-    .tool-card:hover { background: var(--gray-50); }
+    .tool-card:hover { border-color: #444; transform: translateY(-2px); }
 
     .tool-card-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
     }
+
     .tool-tag {
       font-size: .62rem;
-      font-weight: 400;
-      letter-spacing: .12em;
+      font-weight: 600;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--gray-400);
+      color: var(--accent);
     }
-    .tool-icon { font-size: 1.25rem; line-height: 1; }
+
+    .tool-icon { font-size: 1.3rem; line-height: 1; }
 
     .tool-title {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--black);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
       letter-spacing: -.01em;
     }
+
     .tool-desc {
       font-size: .82rem;
-      color: var(--gray-500);
+      color: var(--muted);
       line-height: 1.7;
       flex: 1;
     }
+
     .tool-link-row {
       font-size: .75rem;
-      font-weight: 300;
-      color: var(--gray-400);
+      color: var(--muted);
       letter-spacing: .04em;
-      margin-top: 8px;
+      margin-top: 0.4rem;
       transition: color .15s;
     }
-    .tool-card:hover .tool-link-row { color: var(--black); }
+    .tool-card:hover .tool-link-row { color: var(--accent); }
 
-    /* ============================================================
-       ギャラリーグリッド
-
+    /* ─── GALLERY ─── */
+    /*
        画像の追加方法：
        ① gallery/ フォルダに画像ファイルを置く
-       ② JS の GALLERY_IMAGES 配列に以下の形式で追加する
+       ② JS の GALLERY_IMAGES 配列に追加する
           { src: 'gallery/ファイル名.jpg', title: '作品名', desc: '説明（省略可）' }
-    ============================================================ */
+    */
+    .gallery-section { background: var(--bg2); border-top: 1px solid var(--border); }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1px;
-      background: var(--gray-200);
-      outline: 1px solid var(--gray-200);
+      gap: 1rem;
     }
 
     .gallery-item {
-      background: var(--white);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
-      transition: background .18s;
+      transition: border-color .2s, transform .2s;
     }
     .gallery-item[onclick] { cursor: pointer; }
-    .gallery-item:hover { background: var(--gray-50); }
+    .gallery-item:hover { border-color: #444; transform: translateY(-2px); }
 
     .gallery-img-wrap {
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: var(--gray-100);
+      background: var(--bg3);
     }
     .gallery-img-wrap img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform .5s ease;
-      filter: grayscale(8%);
     }
     .gallery-item:hover .gallery-img-wrap img { transform: scale(1.04); }
 
@@ -252,7 +247,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      color: var(--gray-300);
+      color: var(--border);
     }
     .gallery-placeholder .ph-icon { font-size: 1.4rem; }
     .gallery-placeholder .ph-text {
@@ -261,45 +256,37 @@
       text-transform: uppercase;
     }
 
-    .gallery-info { padding: 18px 24px 24px; }
+    .gallery-info { padding: 1rem 1.2rem 1.2rem; }
     .g-title {
       font-size: .88rem;
-      font-weight: 400;
-      color: var(--black);
+      font-weight: 600;
+      color: var(--text);
       margin-bottom: 3px;
-      letter-spacing: -.01em;
     }
     .g-desc {
       font-size: .75rem;
-      color: var(--gray-400);
-      font-weight: 300;
+      color: var(--muted);
     }
 
-    /* ============================================================
-       ライトボックス
-    ============================================================ */
+    /* ─── LIGHTBOX ─── */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,10,10,.94);
+      background: rgba(0,0,0,.92);
       z-index: 200;
       align-items: center;
       justify-content: center;
       padding: 32px;
     }
     .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 100%;
-      max-height: 88vh;
-      display: block;
-    }
+    .lightbox img { max-width: 100%; max-height: 88vh; display: block; border-radius: 8px; }
     .lightbox-close {
       position: absolute;
       top: 24px; right: 32px;
       background: none;
       border: none;
-      color: var(--gray-500);
+      color: var(--muted);
       font-family: 'DM Sans', sans-serif;
       font-size: .65rem;
       font-weight: 400;
@@ -308,99 +295,86 @@
       cursor: pointer;
       transition: color .15s;
     }
-    .lightbox-close:hover { color: var(--white); }
+    .lightbox-close:hover { color: var(--text); }
 
-    /* ============================================================
-       フッター
-    ============================================================ */
+    /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid var(--gray-200);
-      padding: 28px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
       margin-top: auto;
     }
-    footer p {
-      font-size: .7rem;
-      color: var(--gray-400);
-      font-weight: 300;
-      letter-spacing: .06em;
-    }
-    footer a { color: var(--gray-400); text-decoration: none; transition: color .15s; }
-    footer a:hover { color: var(--black); }
+    footer a { color: var(--muted); transition: color .15s; }
+    footer a:hover { color: var(--text); }
+    .footer-sep { margin: 0 0.5rem; color: var(--border); }
 
-    /* ============================================================
-       レスポンシブ
-    ============================================================ */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
-      nav    { padding: 0 20px; }
-      .hero  { padding: 60px 20px 52px; }
-      .section { padding: 48px 20px 64px; }
-      .tools-grid   { grid-template-columns: 1fr; }
+      nav { padding: 0 1.2rem; }
+      .hero { padding: 3.5rem 1.2rem 3rem; }
+      .section { padding: 3rem 1.2rem 4rem; }
+      .tools-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+      footer { padding: 1.5rem 1.2rem; }
     }
     @media (min-width: 960px) {
-      .tools-grid   { grid-template-columns: repeat(3, 1fr); }
+      .tools-grid { grid-template-columns: repeat(4, 1fr); }
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- ============================================================
-     ナビゲーション
-============================================================ -->
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#" onclick="showPage('tools'); return false;">CHUNK-jp</a>
-  <div class="nav-links">
-    <button class="nav-link active" id="nav-tools"   onclick="showPage('tools')">Tools</button>
-    <button class="nav-link"        id="nav-gallery" onclick="showPage('gallery')">Gallery</button>
+  <a class="nav-logo" href="/">CHUNK-jp</a>
+  <div class="nav-right">
+    <a class="btn-gh" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
   </div>
 </nav>
 
-<!-- ============================================================
-     ツールページ
-============================================================ -->
-<div id="page-tools" class="page active">
-  <div class="hero">
-    <div class="hero-label">CHUNK-jp / Web Tools</div>
-    <h1>Tools.</h1>
-    <p>ブラウザで完結する無料ツール集。<br>インストール不要、登録不要。</p>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Available Tools</div>
-    <!-- ツール追加方法 → JS の TOOLS 配列にオブジェクトを追加してください -->
-    <div class="tools-grid" id="toolsGrid"></div>
-  </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">CHUNK-jp / Web Tools</div>
+  <h1>Tools.</h1>
+  <p>ブラウザで完結する無料ツール集。<br>インストール不要、登録不要。</p>
 </div>
 
-<!-- ============================================================
-     ギャラリーページ
-============================================================ -->
-<div id="page-gallery" class="page">
-  <div class="hero">
-    <div class="hero-label">CHUNK-jp / Works</div>
-    <h1>Gallery.</h1>
-    <p>これまでに描いた絵を紹介しています。</p>
-  </div>
+<!-- TOOLS -->
+<div class="section">
+  <div class="section-label">Available Tools</div>
+  <!-- ツール追加方法 → JS の TOOLS 配列にオブジェクトを追加してください -->
+  <div class="tools-grid" id="toolsGrid"></div>
+</div>
 
+<!-- GALLERY -->
+<div class="gallery-section">
   <div class="section">
-    <div class="section-label">Works</div>
+    <div class="section-label">Gallery</div>
     <!-- 画像追加方法 → gallery/ フォルダに画像を置き、JS の GALLERY_IMAGES 配列に追加 -->
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </div>
 
-<!-- フッター -->
+<!-- FOOTER -->
 <footer>
-  <p>© 2025 <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">CHUNK-jp</a></p>
-  <p><a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">GitHub</a></p>
+  <p>
+    © 2025 CHUNK-jp
+    <span class="footer-sep">·</span>
+    <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">GitHub</a>
+    <span class="footer-sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="footer-sep">·</span>
+    <a href="contact.html">Contact</a>
+  </p>
 </footer>
 
-<!-- ライトボックス -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">Close</button>
   <img id="lightboxImg" src="" alt="">
@@ -439,7 +413,6 @@
       url:   'https://CHUNK-jp.github.io/encryption-tool/',
       tag:   'Security',
     },
-
     {
       icon:  '🏠',
       title: 'Attic',
@@ -521,14 +494,6 @@
         </div>
       </div>
     `).join('');
-  }
-
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.getElementById('nav-' + name).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function openLightbox(src, alt) {
