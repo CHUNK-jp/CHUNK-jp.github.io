@@ -560,6 +560,52 @@
     <circle cx="242" cy="96"  r="2"   fill="#5eead4" opacity="0.18"/>
   </svg>`;
 
+  /* ── MirrorHealth: グリーン (ローカルAI健康) ── */
+  const SVG_MIRROR = `<svg viewBox="0 0 300 148" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="mhBg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#051a0e"/>
+        <stop offset="100%" stop-color="#020d07"/>
+      </linearGradient>
+      <linearGradient id="mhGreen" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#22c55e"/>
+        <stop offset="100%" stop-color="#4ade80"/>
+      </linearGradient>
+      <filter id="mhGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <pattern id="mhDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="10" cy="10" r="1" fill="#22c55e" fill-opacity="0.1"/>
+      </pattern>
+    </defs>
+    <rect width="300" height="148" fill="url(#mhBg)"/>
+    <rect width="300" height="148" fill="url(#mhDots)"/>
+    <!-- Heart rate waveform -->
+    <polyline points="14,80 40,80 52,80 60,42 68,118 76,80 88,80 98,80 108,56 116,104 124,80 160,80 300,80"
+      stroke="url(#mhGreen)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+      filter="url(#mhGlow)" opacity="0.95"/>
+    <!-- Glow area under waveform -->
+    <polygon points="14,80 40,80 52,80 60,42 68,118 76,80 88,80 98,80 108,56 116,104 124,80 160,80 300,80 300,148 14,148"
+      fill="#22c55e" fill-opacity="0.04"/>
+    <!-- Mini metric cards -->
+    <rect x="170" y="18" width="58" height="36" rx="7" fill="#0a2e16" stroke="#22c55e" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="178" y="32" fill="#4ade80" font-size="8" font-family="monospace" opacity="0.7">STEPS</text>
+    <text x="178" y="46" fill="#4ade80" font-size="13" font-family="monospace" font-weight="700">8,432</text>
+    <rect x="234" y="18" width="58" height="36" rx="7" fill="#0a2e16" stroke="#22c55e" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="242" y="32" fill="#f87171" font-size="8" font-family="monospace" opacity="0.7">HEART</text>
+    <text x="242" y="46" fill="#f87171" font-size="13" font-family="monospace" font-weight="700">72bpm</text>
+    <rect x="170" y="62" width="58" height="36" rx="7" fill="#0a2e16" stroke="#22c55e" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="178" y="76" fill="#a78bfa" font-size="8" font-family="monospace" opacity="0.7">SLEEP</text>
+    <text x="178" y="90" fill="#a78bfa" font-size="13" font-family="monospace" font-weight="700">7.4h</text>
+    <rect x="234" y="62" width="58" height="36" rx="7" fill="#0a2e16" stroke="#22c55e" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="242" y="76" fill="#4ade80" font-size="8" font-family="monospace" opacity="0.7">HRV</text>
+    <text x="242" y="90" fill="#4ade80" font-size="13" font-family="monospace" font-weight="700">48ms</text>
+    <!-- Lock icon: local only -->
+    <rect x="174" y="108" width="52" height="24" rx="6" fill="#0a2e16" stroke="#22c55e" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="200" y="124" text-anchor="middle" fill="#4ade80" font-size="9" font-family="monospace" letter-spacing="0.5" opacity="0.85">🔒 LOCAL AI</text>
+  </svg>`;
+
   /* ── Attic: アンバー/ゴールド (CLIツール) ── */
   const SVG_ATTIC = `<svg viewBox="0 0 300 148" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -636,6 +682,15 @@
       url:   'https://CHUNK-jp.github.io/encryption-tool/',
       tag:   'Security',
       svg:   SVG_ENCRYPT,
+    },
+    {
+      icon:  '🪞',
+      title: 'MirrorHealth',
+      desc:  'Apple HealthのデータをローカルAI（Ollama）で分析する健康ダッシュボード。データはあなたのデバイスだけで処理。クラウドに一切送信しません。',
+      url:   'https://github.com/CHUNK-jp/mirrorhealth',
+      tag:   'Health · Local AI',
+      svg:   SVG_MIRROR,
+      isCli: true,
     },
     {
       icon:  '🏠',
