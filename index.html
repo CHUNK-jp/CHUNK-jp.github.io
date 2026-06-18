@@ -7,29 +7,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CHUNK-jp</title>
   <meta name="google-site-verification" content="95r7tjU2_62CnA-i4NQ9ec42nfMWHtnusEBP5__3Mmg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #0d0d0d;
-      --bg2:     #141414;
-      --bg3:     #1a1a1a;
-      --border:  #2a2a2a;
-      --text:    #e8e8e8;
-      --muted:   #888;
-      --accent:  #7c6aff;
+      --bg:        #0d0d0d;
+      --bg2:       #141414;
+      --bg3:       #1a1a1a;
+      --border:    #2a2a2a;
+      --text:      #e8e8e8;
+      --muted:     #888;
+      --accent:    #7c6aff;
+      --accent2:   #a08fff;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', -apple-system, 'Hiragino Sans', sans-serif;
-      font-weight: 300;
+      font-family: var(--font-sans);
       font-size: 15px;
-      line-height: 1.65;
+      line-height: 1.6;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -56,11 +55,14 @@
     }
 
     .nav-logo {
-      font-size: .9rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: .04em;
-      color: var(--text);
+      letter-spacing: 0.01em;
+      color: var(--muted);
+      transition: color 0.15s;
     }
+    .nav-logo:hover { color: var(--text); }
 
     .nav-right {
       display: flex;
@@ -78,23 +80,26 @@
       border-radius: 6px;
       font-size: 0.82rem;
       color: var(--text);
-      transition: border-color .15s, background .15s;
+      transition: border-color 0.15s, background 0.15s;
     }
     .btn-gh:hover { border-color: #555; background: #222; }
 
     /* ─── HERO ─── */
     .hero {
+      max-width: 860px;
+      margin: 0 auto;
       padding: 5rem 2rem 4rem;
-      border-bottom: 1px solid var(--border);
+      text-align: center;
     }
 
     .hero-label {
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .12em;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: .9rem;
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
@@ -106,10 +111,11 @@
     }
 
     .hero p {
-      font-size: .9rem;
+      font-size: 1rem;
       color: var(--muted);
-      max-width: 400px;
-      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
     }
 
     /* ─── SECTION ─── */
@@ -120,14 +126,16 @@
       width: 100%;
     }
 
+    .tools-section { max-width: 780px; }
+
     .section-label {
-      font-size: .65rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: .14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid var(--border);
     }
 
@@ -145,23 +153,23 @@
     */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
     }
 
     .tool-card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.6rem 1.5rem 1.4rem;
+      border-radius: 8px;
+      padding: 1.5rem 1.4rem 1.3rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.7rem;
       text-decoration: none;
       color: inherit;
-      transition: border-color .2s, transform .2s;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .tool-card:hover { border-color: #444; transform: translateY(-2px); }
+    .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
     .tool-card-top {
       display: flex;
@@ -170,35 +178,35 @@
     }
 
     .tool-tag {
-      font-size: .62rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: .1em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
     }
 
-    .tool-icon { font-size: 1.3rem; line-height: 1; }
+    .tool-icon { font-size: 1.2rem; line-height: 1; }
 
     .tool-title {
-      font-size: .95rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text);
-      letter-spacing: -.01em;
+      letter-spacing: -0.01em;
     }
 
     .tool-desc {
-      font-size: .82rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.65;
       flex: 1;
     }
 
     .tool-link-row {
-      font-size: .75rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      letter-spacing: .04em;
-      margin-top: 0.4rem;
-      transition: color .15s;
+      letter-spacing: 0.02em;
+      margin-top: 0.3rem;
+      transition: color 0.15s;
     }
     .tool-card:hover .tool-link-row { color: var(--accent); }
 
@@ -207,7 +215,7 @@
       height: 140px;
       border-radius: 6px;
       overflow: hidden;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
     .tool-thumb svg { width: 100%; height: 100%; display: block; }
 
@@ -229,9 +237,9 @@
     .gallery-item {
       background: var(--bg3);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
-      transition: border-color .2s, transform .2s;
+      transition: border-color 0.2s, transform 0.2s;
     }
     .gallery-item[onclick] { cursor: pointer; }
     .gallery-item:hover { border-color: #444; transform: translateY(-2px); }
@@ -245,7 +253,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .5s ease;
+      transition: transform 0.5s ease;
     }
     .gallery-item:hover .gallery-img-wrap img { transform: scale(1.04); }
 
@@ -260,22 +268,19 @@
     }
     .gallery-placeholder .ph-icon { font-size: 1.4rem; }
     .gallery-placeholder .ph-text {
-      font-size: .68rem;
-      letter-spacing: .1em;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .gallery-info { padding: 1rem 1.2rem 1.2rem; }
     .g-title {
-      font-size: .88rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 3px;
     }
-    .g-desc {
-      font-size: .75rem;
-      color: var(--muted);
-    }
+    .g-desc { font-size: 0.75rem; color: var(--muted); }
 
     /* ─── LIGHTBOX ─── */
     .lightbox {
@@ -296,28 +301,33 @@
       background: none;
       border: none;
       color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: .65rem;
+      font-size: 0.72rem;
       font-weight: 400;
-      letter-spacing: .14em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: color .15s;
+      transition: color 0.15s;
     }
     .lightbox-close:hover { color: var(--text); }
 
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.8rem 2rem;
+      padding: 2rem;
       text-align: center;
-      font-size: .78rem;
+      font-size: 0.82rem;
       color: var(--muted);
       margin-top: auto;
     }
-    footer a { color: var(--muted); transition: color .15s; }
-    footer a:hover { color: var(--text); }
-    .footer-sep { margin: 0 0.5rem; color: var(--border); }
+    footer a { color: var(--accent); transition: opacity 0.15s; }
+    footer a:hover { opacity: 0.75; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
@@ -327,9 +337,12 @@
       .tools-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       footer { padding: 1.5rem 1.2rem; }
+      .footer-links { gap: 1rem; }
     }
-    @media (min-width: 960px) {
-      .tools-grid { grid-template-columns: repeat(4, 1fr); }
+    @media (min-width: 860px) {
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1060px) {
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
@@ -348,14 +361,14 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<section class="hero">
   <div class="hero-label">CHUNK-jp / Web Tools</div>
   <h1>Tools.</h1>
-  <p>ブラウザで完結する無料ツール集。<br>インストール不要、登録不要。</p>
-</div>
+  <p>ブラウザで完結する無料ツール集。インストール不要、登録不要。</p>
+</section>
 
 <!-- TOOLS -->
-<div class="section">
+<div class="section tools-section">
   <div class="section-label">Available Tools</div>
   <!-- ツール追加方法 → JS の TOOLS 配列にオブジェクトを追加してください -->
   <div class="tools-grid" id="toolsGrid"></div>
@@ -372,15 +385,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>
-    © 2025 CHUNK-jp
-    <span class="footer-sep">·</span>
+  <div class="footer-links">
     <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">GitHub</a>
-    <span class="footer-sep">·</span>
     <a href="privacy.html">Privacy</a>
-    <span class="footer-sep">·</span>
     <a href="contact.html">Contact</a>
-  </p>
+  </div>
+  <p>© 2025 <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">CHUNK-jp</a></p>
 </footer>
 
 <!-- LIGHTBOX -->
