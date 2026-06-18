@@ -202,6 +202,15 @@
     }
     .tool-card:hover .tool-link-row { color: var(--accent); }
 
+    .tool-thumb {
+      width: 100%;
+      height: 140px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 0.25rem;
+    }
+    .tool-thumb svg { width: 100%; height: 100%; display: block; }
+
     /* ─── GALLERY ─── */
     /*
        画像の追加方法：
@@ -382,6 +391,99 @@
 
 <script>
   /* ==============================================================
+     SVGサムネイル（各ツールカードのビジュアル）
+  ============================================================== */
+  const SVG_LOAN = `<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="140" fill="#1a1a1a"/>
+    <line x1="40" y1="15" x2="40" y2="116" stroke="#252525" stroke-width="1"/>
+    <line x1="40" y1="116" x2="285" y2="116" stroke="#252525" stroke-width="1"/>
+    <line x1="40" y1="66" x2="285" y2="66" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,5"/>
+    <line x1="40" y1="91" x2="285" y2="91" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,5"/>
+    <line x1="88" y1="15" x2="88" y2="116" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,5"/>
+    <line x1="160" y1="15" x2="160" y2="116" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,5"/>
+    <line x1="232" y1="15" x2="232" y2="116" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,5"/>
+    <path d="M52,24 C88,28 135,52 192,86 S258,112 282,116 L282,116 L52,116 Z" fill="#7c6aff" fill-opacity="0.1"/>
+    <path d="M52,24 C88,28 135,52 192,86 S258,112 282,116" stroke="#7c6aff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="52" cy="24" r="4" fill="#7c6aff"/>
+    <circle cx="156" cy="63" r="3.5" fill="#7c6aff" fill-opacity="0.7"/>
+    <circle cx="282" cy="116" r="3.5" fill="#7c6aff" fill-opacity="0.4"/>
+    <circle cx="248" cy="44" r="21" stroke="#e8e8e8" stroke-width="1.5" fill="#1a1a1a"/>
+    <text x="248" y="51" text-anchor="middle" fill="#e8e8e8" font-size="18" font-family="sans-serif">¥</text>
+  </svg>`;
+
+  const SVG_BMI = `<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="140" fill="#1a1a1a"/>
+    <circle cx="72" cy="30" r="14" fill="#e8e8e8" fill-opacity="0.85"/>
+    <rect x="60" y="46" width="24" height="36" rx="8" fill="#e8e8e8" fill-opacity="0.85"/>
+    <line x1="62" y1="56" x2="43" y2="74" stroke="#e8e8e8" stroke-width="7" stroke-linecap="round" stroke-opacity="0.85"/>
+    <line x1="82" y1="56" x2="101" y2="74" stroke="#e8e8e8" stroke-width="7" stroke-linecap="round" stroke-opacity="0.85"/>
+    <line x1="66" y1="81" x2="58" y2="112" stroke="#e8e8e8" stroke-width="7" stroke-linecap="round" stroke-opacity="0.85"/>
+    <line x1="78" y1="81" x2="86" y2="112" stroke="#e8e8e8" stroke-width="7" stroke-linecap="round" stroke-opacity="0.85"/>
+    <defs>
+      <clipPath id="barClip">
+        <rect x="122" y="50" width="158" height="14" rx="7"/>
+      </clipPath>
+    </defs>
+    <rect x="122" y="50" width="158" height="14" rx="7" fill="#252525"/>
+    <g clip-path="url(#barClip)">
+      <rect x="122" y="50" width="42" height="14" fill="#4a9eff" fill-opacity="0.45"/>
+      <rect x="164" y="50" width="54" height="14" fill="#7c6aff" fill-opacity="0.65"/>
+      <rect x="218" y="50" width="36" height="14" fill="#ffaa44" fill-opacity="0.45"/>
+      <rect x="254" y="50" width="26" height="14" fill="#ff6060" fill-opacity="0.45"/>
+    </g>
+    <rect x="122" y="50" width="158" height="14" rx="7" fill="none" stroke="#303030" stroke-width="1"/>
+    <line x1="198" y1="43" x2="198" y2="70" stroke="#e8e8e8" stroke-width="1.5" stroke-dasharray="2,2"/>
+    <polygon points="198,42 194,35 202,35" fill="#e8e8e8"/>
+    <line x1="122" y1="67" x2="122" y2="72" stroke="#444" stroke-width="1.5"/>
+    <line x1="164" y1="67" x2="164" y2="72" stroke="#444" stroke-width="1.5"/>
+    <line x1="218" y1="67" x2="218" y2="72" stroke="#444" stroke-width="1.5"/>
+    <line x1="254" y1="67" x2="254" y2="72" stroke="#444" stroke-width="1.5"/>
+    <line x1="280" y1="67" x2="280" y2="72" stroke="#444" stroke-width="1.5"/>
+    <text x="122" y="84" text-anchor="middle" fill="#444" font-size="8" font-family="sans-serif">15</text>
+    <text x="164" y="84" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">18.5</text>
+    <text x="218" y="84" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">25</text>
+    <text x="254" y="84" text-anchor="middle" fill="#666" font-size="8" font-family="sans-serif">30</text>
+    <text x="280" y="84" text-anchor="middle" fill="#444" font-size="8" font-family="sans-serif">35+</text>
+    <text x="198" y="104" text-anchor="middle" fill="#7c6aff" font-size="11" font-family="sans-serif" font-weight="600">BMI 22.4</text>
+  </svg>`;
+
+  const SVG_ENCRYPT = `<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="140" fill="#1a1a1a"/>
+    <rect x="18" y="44" width="70" height="36" rx="5" stroke="#2a2a2a" stroke-width="1.5" fill="#141414"/>
+    <text x="53" y="68" text-anchor="middle" fill="#e8e8e8" font-size="18" font-family="monospace" font-weight="600">ABC</text>
+    <line x1="93" y1="62" x2="110" y2="62" stroke="#444" stroke-width="1.5"/>
+    <polygon points="109,58 118,62 109,66" fill="#444"/>
+    <circle cx="150" cy="54" r="19" stroke="#7c6aff" stroke-width="2" fill="#1a1a1a"/>
+    <circle cx="150" cy="54" r="7" stroke="#7c6aff" stroke-width="2" fill="#1a1a1a"/>
+    <line x1="165" y1="54" x2="198" y2="54" stroke="#7c6aff" stroke-width="2.5"/>
+    <line x1="184" y1="54" x2="184" y2="67" stroke="#7c6aff" stroke-width="2.5"/>
+    <line x1="195" y1="54" x2="195" y2="63" stroke="#7c6aff" stroke-width="2.5"/>
+    <line x1="200" y1="62" x2="213" y2="62" stroke="#444" stroke-width="1.5"/>
+    <polygon points="212,58 221,62 212,66" fill="#444"/>
+    <rect x="225" y="44" width="58" height="36" rx="5" stroke="#7c6aff" stroke-width="1.5" fill="#141414"/>
+    <text x="254" y="68" text-anchor="middle" fill="#7c6aff" font-size="18" font-family="monospace" font-weight="600">***</text>
+    <text x="150" y="108" text-anchor="middle" fill="#333" font-size="9" font-family="sans-serif" letter-spacing="2">AES-256-GCM</text>
+  </svg>`;
+
+  const SVG_ATTIC = `<svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="140" fill="#1a1a1a"/>
+    <path d="M16,56 L16,110 L118,110 L118,64 L72,64 L62,54 L16,54 Z" fill="#1d1d1d" stroke="#2a2a2a" stroke-width="1.5"/>
+    <path d="M16,54 L62,54 L72,64 L16,64 Z" fill="#252525"/>
+    <line x1="30" y1="78" x2="96" y2="78" stroke="#303030" stroke-width="1.5"/>
+    <line x1="30" y1="90" x2="80" y2="90" stroke="#303030" stroke-width="1.5"/>
+    <line x1="30" y1="102" x2="90" y2="102" stroke="#303030" stroke-width="1.5"/>
+    <circle cx="96" cy="82" r="26" fill="#1a1a1a" fill-opacity="0.95" stroke="#7c6aff" stroke-width="2.5"/>
+    <circle cx="96" cy="82" r="14" stroke="#7c6aff" stroke-width="1.5" fill="none" stroke-opacity="0.3"/>
+    <line x1="115" y1="101" x2="133" y2="120" stroke="#7c6aff" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="144" cy="52" r="3.5" fill="#7c6aff"/>
+    <circle cx="144" cy="70" r="3.5" fill="#7c6aff" fill-opacity="0.6"/>
+    <circle cx="144" cy="88" r="3.5" fill="#7c6aff" fill-opacity="0.35"/>
+    <line x1="154" y1="52" x2="282" y2="52" stroke="#e8e8e8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7"/>
+    <line x1="154" y1="70" x2="254" y2="70" stroke="#e8e8e8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
+    <line x1="154" y1="88" x2="268" y2="88" stroke="#e8e8e8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.32"/>
+  </svg>`;
+
+  /* ==============================================================
      ツールデータ
      ── 新しいツールを追加するときはここに追加してください ──
      フィールド：
@@ -390,6 +492,7 @@
        desc  : 説明文
        url   : ツールのURL
        tag   : カテゴリラベル（省略可）
+       svg   : サムネイルSVG定数（上の SVG_* を指定）
   ============================================================== */
   const TOOLS = [
     {
@@ -398,6 +501,7 @@
       desc:  '借入金額・金利・返済期間を入力して月々の返済額や総返済額をグラフで確認できます。',
       url:   'https://CHUNK-jp.github.io/loan-calculator/',
       tag:   'Finance',
+      svg:   SVG_LOAN,
     },
     {
       icon:  '⚖️',
@@ -405,6 +509,7 @@
       desc:  '身長・体重からBMIを算出。適正体重・基礎代謝（BMR）・目標体重まであと何kgかを表示します。',
       url:   'https://CHUNK-jp.github.io/bmi-calculator/',
       tag:   'Health',
+      svg:   SVG_BMI,
     },
     {
       icon:  '🔐',
@@ -412,6 +517,7 @@
       desc:  'AES-256-GCMでテキストをパスワード暗号化・復号。処理はブラウザ内で完結し外部に送信しません。',
       url:   'https://CHUNK-jp.github.io/encryption-tool/',
       tag:   'Security',
+      svg:   SVG_ENCRYPT,
     },
     {
       icon:  '🏠',
@@ -419,6 +525,7 @@
       desc:  '自然言語でローカルファイルを検索。クラウドなし・完全オフライン。',
       url:   'https://CHUNK-jp.github.io/attic/',
       tag:   'Utility',
+      svg:   SVG_ATTIC,
     },
 
     /* ──────────────────────────────────────────────────────────
@@ -429,6 +536,7 @@
          desc:  'ツールの説明',
          url:   'https://CHUNK-jp.github.io/リポジトリ名/',
          tag:   'カテゴリ',
+         svg:   SVG_XXX,
        },
     ────────────────────────────────────────────────────────── */
   ];
@@ -457,6 +565,7 @@
   function renderTools() {
     document.getElementById('toolsGrid').innerHTML = TOOLS.map(t => `
       <a class="tool-card" href="${t.url}" target="_blank" rel="noopener">
+        ${t.svg ? `<div class="tool-thumb">${t.svg}</div>` : ''}
         <div class="tool-card-top">
           <span class="tool-tag">${t.tag || ''}</span>
           <span class="tool-icon">${t.icon}</span>
