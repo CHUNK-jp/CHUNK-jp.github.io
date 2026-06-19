@@ -655,6 +655,36 @@
           font-weight="700" letter-spacing="0.5">CLI</text>
   </svg>`;
 
+const SVG_DAILY_PULSE = `<svg viewBox="0 0 300 148" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="dpSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0520"/><stop offset="60%" stop-color="#1a0a3a"/><stop offset="100%" stop-color="#0d0d0d"/></linearGradient>
+<linearGradient id="dpSun" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient>
+<filter id="dpGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<pattern id="dpDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="#7c3aed" fill-opacity="0.12"/></pattern>
+</defs>
+<rect width="300" height="148" fill="url(#dpSky)"/>
+<rect width="300" height="148" fill="url(#dpDots)"/>
+<ellipse cx="150" cy="148" rx="120" ry="40" fill="#7c3aed" fill-opacity="0.18" filter="url(#dpGlow)"/>
+<line x1="0" y1="102" x2="300" y2="102" stroke="#7c3aed" stroke-width="1" opacity="0.3"/>
+<path d="M 90 102 A 60 60 0 0 1 210 102" stroke="url(#dpSun)" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#dpGlow)" opacity="0.9"/>
+<circle cx="150" cy="102" r="8" fill="url(#dpSun)" filter="url(#dpGlow)"/>
+<line x1="150" y1="70" x2="150" y2="80" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+<line x1="124" y1="78" x2="130" y2="85" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+<line x1="176" y1="78" x2="170" y2="85" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+<rect x="14" y="112" width="100" height="4" rx="2" fill="#a78bfa" fill-opacity="0.5"/>
+<rect x="14" y="122" width="80" height="4" rx="2" fill="#a78bfa" fill-opacity="0.35"/>
+<rect x="14" y="132" width="90" height="4" rx="2" fill="#a78bfa" fill-opacity="0.25"/>
+<rect x="186" y="16" width="44" height="18" rx="5" fill="#7c3aed" fill-opacity="0.2" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.5"/>
+<text x="208" y="28" text-anchor="middle" fill="#a78bfa" font-size="8.5" font-family="monospace" font-weight="700">HN</text>
+<rect x="236" y="16" width="44" height="18" rx="5" fill="#7c3aed" fill-opacity="0.15" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.35"/>
+<text x="258" y="28" text-anchor="middle" fill="#a78bfa" font-size="8.5" font-family="monospace" font-weight="700">RSS</text>
+<rect x="186" y="40" width="94" height="18" rx="5" fill="#7c3aed" fill-opacity="0.12" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+<text x="233" y="52" text-anchor="middle" fill="#a78bfa" font-size="8.5" font-family="monospace" font-weight="700">Reddit</text>
+<text x="233" y="80" text-anchor="middle" fill="#7c3aed" font-size="14" opacity="0.6">↓</text>
+<rect x="186" y="88" width="94" height="18" rx="5" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-width="1" stroke-opacity="0.4"/>
+<text x="233" y="100" text-anchor="middle" fill="#93c5fd" font-size="8.5" font-family="monospace" font-weight="700">AI Summary</text>
+</svg>`;
+
   /* ==============================================================
      ツールデータ
   ============================================================== */
@@ -701,6 +731,16 @@
       svg:   SVG_ATTIC,
       isCli: true,
     },
+    {
+      icon: '🌅',
+      title: 'DailyPulse',
+      desc: 'HackerNews・RSS・Redditを自動収集し、ローカルLLMで要約。毎朝1コマンドで今日のブリーフィングを届ける。クラウドなし・サブスクなし。',
+      url: 'https://chunk-jp.github.io/daily-pulse/',
+      tag: 'CLI · Local',
+      svg: SVG_DAILY_PULSE,
+      isCli: true,
+    },
+
   ];
 
   /* ==============================================================
