@@ -43,6 +43,23 @@
 
     .footer-gh { transition: color 0.15s, border-color 0.15s; }
     .footer-gh:hover { color: #FAFAFA; border-color: #3F3F46; }
+
+    @media (max-width: 640px) {
+      body { overflow-x: hidden; }
+      .nav-inner { padding: 0 16px !important; gap: 12px !important; }
+      .nav-links-wrap { display: none !important; }
+      .hero-section { padding: 88px 20px 64px !important; }
+      .hero-badge { max-width: calc(100% - 24px) !important; flex-wrap: wrap !important; text-align: center !important; }
+      .hero-h1 { font-size: 38px !important; }
+      .crafted-badge { flex-wrap: wrap !important; justify-content: center !important; padding: 12px 16px !important; }
+      .tools-grid-mac, .tools-grid-browser { grid-template-columns: minmax(0, 1fr) !important; }
+      .tool-card { padding: 28px 22px !important; }
+      .util-item { padding: 16px 18px !important; }
+      .phil-pad { padding: 48px 20px 40px !important; }
+      .phil-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .phil-item { padding: 22px 20px !important; }
+      .footer-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+    }
   </style>
 </head>
 <body>
@@ -52,7 +69,7 @@
   <!-- ── NAVIGATION ── -->
   <nav style="position: sticky; top: 0; z-index: 100;">
     <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-      <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
+      <div class="nav-inner" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
         <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
           <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
             <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
@@ -64,7 +81,7 @@
           </div>
           <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 4px; flex: 1;">
+        <div class="nav-links-wrap" style="display: flex; align-items: center; gap: 4px; flex: 1;">
           <a class="nav-link" href="#mac-tools">Mac Tools</a>
           <a class="nav-link" href="#browser-tools">Browser Utilities</a>
           <a class="nav-link" href="#philosophy">Philosophy</a>
@@ -78,17 +95,17 @@
   </nav>
 
   <!-- ── HERO ── -->
-  <section style="position: relative; padding: 112px 24px 96px; text-align: center; overflow: hidden;">
+  <section class="hero-section" style="position: relative; padding: 112px 24px 96px; text-align: center; overflow: hidden;">
     <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(59,130,246,0.11) 0%, transparent 68%); pointer-events: none;"></div>
     <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%);"></div>
 
     <div style="position: relative; max-width: 800px; margin: 0 auto; animation: fade-in-up 0.6s ease both;">
-      <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18); border-radius: 100px; padding: 6px 16px; margin-bottom: 36px;">
+      <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18); border-radius: 100px; padding: 6px 16px; margin-bottom: 36px;">
         <div style="width: 6px; height: 6px; border-radius: 50%; background: #3B82F6; animation: pulse-dot 2.4s ease-in-out infinite;"></div>
         <span style="font-size: 13px; color: #60A5FA; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">Mac tools + browser utilities · all private · all free</span>
       </div>
 
-      <h1 style="font-size: 80px; font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 26px; text-wrap: balance;">
+      <h1 class="hero-h1" style="font-size: 80px; font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 26px; text-wrap: balance;">
         Your data never<br>leaves <span style="color: #3B82F6;">home.</span>
       </h1>
 
@@ -96,7 +113,7 @@
         A growing collection of Mac tools and browser utilities built on one rule: your data stays on your device.
       </p>
 
-      <div style="display: inline-flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 100px; padding: 9px 20px 9px 14px;">
+      <div class="crafted-badge" style="display: inline-flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 100px; padding: 9px 20px 9px 14px;">
         <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
           <svg viewBox="0 0 10 10" width="8" height="8" fill="#3B82F6">
             <rect x="0.5" y="0.5" width="3.5" height="3.5" rx="0.6"></rect>
@@ -129,7 +146,7 @@
         <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">local-first · macOS</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
+      <div class="tools-grid-mac" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
 
         <!-- ── Attic ── -->
         <a href="https://CHUNK-jp.github.io/attic/" target="_blank" rel="noopener" class="tool-card">
@@ -290,7 +307,7 @@
         <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">instant-use · no install · in-browser</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px;">
+      <div class="tools-grid-browser" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px;">
 
         <!-- Loan Calculator -->
         <a href="https://CHUNK-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="util-item">
@@ -353,12 +370,12 @@
         <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 56px; background: linear-gradient(to bottom, rgba(59,130,246,0.5), transparent);"></div>
         <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(59,130,246,0.045) 0%, transparent 70%); pointer-events: none;"></div>
 
-        <div style="position: relative; padding: 72px 64px 64px; text-align: center;">
+        <div class="phil-pad" style="position: relative; padding: 72px 64px 64px; text-align: center;">
           <div style="display: inline-block; font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Philosophy</div>
           <h2 style="font-size: 36px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; max-width: 620px; margin: 0 auto 18px; text-wrap: balance;">Software should work for you.<br>Not harvest from you.</h2>
           <p style="font-size: 15px; color: #71717A; max-width: 500px; margin: 0 auto 56px; line-height: 1.75;">Whether it's a full Mac app or a lightweight browser tool — every piece of software here runs locally, stores nothing remotely, and requires no account.</p>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #27272A; border-radius: 12px; overflow: hidden; text-align: left;">
+          <div class="phil-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #27272A; border-radius: 12px; overflow: hidden; text-align: left;">
 
             <div class="phil-item">
               <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
@@ -402,7 +419,7 @@
   <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
     <div style="max-width: 1100px; margin: 0 auto;">
 
-      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
 
         <div>
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
