@@ -1,260 +1,488 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582357233567372"
      crossorigin="anonymous"></script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プライバシーポリシー — CHUNK-jp</title>
+  <title>Privacy Policy — CHUNK-jp</title>
+  <meta name="description" content="CHUNK-jp's privacy policy: all tools run locally, no data is collected, no analytics, no tracking.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:      #0d0d0d;
-      --surface: #161616;
-      --border:  #2a2a2a;
-      --text:    #f0f0f0;
-      --gray-400: #737373;
-      --gray-500: #a3a3a3;
-      --gray-700: #d0d0d0;
-    }
-
     html { scroll-behavior: smooth; }
+    body { background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    ::selection { background: rgba(59,130,246,0.25); color: #FAFAFA; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
 
-    body {
-      font-family: 'DM Sans', -apple-system, 'Hiragino Sans', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.65;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-    }
+    .nav-link { font-size: 14px; color: #71717A; text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-link:hover { color: #FAFAFA; background: #111113; }
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 56px;
-    }
+    .btn-gh { display: inline-flex; align-items: center; gap: 8px; background: #111113; border: 1px solid #27272A; color: #A1A1AA; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px; text-decoration: none; flex-shrink: 0; transition: border-color 0.15s, color 0.15s; }
+    .btn-gh:hover { border-color: #3F3F46; color: #FAFAFA; }
 
-    .nav-logo {
-      font-size: .85rem;
-      font-weight: 400;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: .06em;
-    }
+    .link-blue { color: #3B82F6; text-decoration: none; transition: opacity 0.15s; }
+    .link-blue:hover { opacity: 0.8; }
 
-    .nav-links { display: flex; gap: 4px; }
+    .btn-gh-light { display: inline-flex; align-items: center; gap: 8px; background: #18181B; border: 1px solid #27272A; color: #A1A1AA; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+    .btn-gh-light:hover { border-color: #3F3F46; color: #FAFAFA; }
 
-    .nav-link {
-      padding: 6px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .68rem;
-      font-weight: 400;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      text-decoration: none;
-      transition: color .15s;
-    }
-    .nav-link:hover { color: var(--gray-700); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 8px; text-decoration: none; transition: background 0.15s; }
+    .btn-primary:hover { background: #2563EB; }
 
-    .hero {
-      padding: 88px 40px 72px;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-label {
-      font-size: .65rem;
-      font-weight: 400;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 300;
-      letter-spacing: -.04em;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-    .hero p {
-      font-size: .88rem;
-      color: var(--gray-500);
-      font-weight: 300;
-      line-height: 1.75;
-    }
+    .footer-link { font-size: 13px; color: #71717A; text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: #FAFAFA; }
 
-    .section {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 64px 40px 80px;
-      width: 100%;
-      flex: 1;
-    }
+    .footer-gh { transition: color 0.15s, border-color 0.15s; }
+    .footer-gh:hover { color: #FAFAFA; border-color: #3F3F46; }
 
-    .policy-block {
-      margin-bottom: 52px;
-      padding-bottom: 52px;
-      border-bottom: 1px solid var(--border);
-    }
-    .policy-block:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-
-    .policy-block h2 {
-      font-size: .65rem;
-      font-weight: 400;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 20px;
-    }
-
-    .policy-block p,
-    .policy-block li {
-      font-size: .9rem;
-      color: var(--gray-500);
-      line-height: 1.9;
-    }
-
-    .policy-block ul {
-      list-style: none;
-      margin-top: 12px;
-    }
-    .policy-block ul li {
-      padding-left: 1.2em;
-      position: relative;
-      margin-bottom: 6px;
-    }
-    .policy-block ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--gray-400);
-    }
-
-    .policy-block a {
-      color: var(--gray-500);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color .15s;
-    }
-    .policy-block a:hover { color: var(--text); }
-
-    .updated {
-      font-size: .72rem;
-      color: var(--gray-400);
-      letter-spacing: .06em;
-      margin-top: 8px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    footer p {
-      font-size: .7rem;
-      color: var(--gray-400);
-      font-weight: 300;
-      letter-spacing: .06em;
-    }
-    footer a { color: var(--gray-400); text-decoration: none; transition: color .15s; }
-    footer a:hover { color: var(--text); }
-
-    @media (max-width: 600px) {
-      nav      { padding: 0 20px; }
-      .hero    { padding: 60px 20px 52px; }
-      .section { padding: 48px 20px 64px; }
-      footer   { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+    @media (max-width: 640px) {
+      body { overflow-x: hidden; }
+      .nav-inner { padding: 0 16px !important; gap: 12px !important; }
+      .nav-links-wrap { display: none !important; }
+      .policy-hero { padding: 56px 20px 44px !important; }
+      .policy-h1 { font-size: 38px !important; }
+      .data-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .cookie-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .rights-row { grid-template-columns: minmax(0, 1fr) !important; gap: 4px !important; }
+      .footer-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">CHUNK-jp</a>
-  <div class="nav-links">
-    <a class="nav-link" href="index.html">← Tools</a>
-    <a class="nav-link" href="contact.html">Contact</a>
-  </div>
-</nav>
+<div style="min-height: 100vh; background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, sans-serif;">
 
-<div class="hero">
-  <div class="hero-label">CHUNK-jp / Privacy Policy</div>
-  <h1>Privacy Policy.</h1>
-  <p class="updated">最終更新日：2025年1月1日</p>
+  <!-- ── NAVIGATION ── -->
+  <nav style="position: sticky; top: 0; z-index: 100;">
+    <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+      <div class="nav-inner" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
+        <a href="index.html" style="display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; color: inherit;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
+              <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+              <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+              <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+              <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+            </svg>
+          </div>
+          <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
+        </a>
+        <div class="nav-links-wrap" style="display: flex; align-items: center; gap: 4px; flex: 1;">
+          <a class="nav-link" href="index.html#mac-tools">Mac Tools</a>
+          <a class="nav-link" href="index.html#browser-tools">Browser Utilities</a>
+          <a class="nav-link" href="index.html#philosophy">Philosophy</a>
+        </div>
+        <a class="btn-gh" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HEADER ── -->
+  <section class="policy-hero" style="position: relative; padding: 80px 24px 64px; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(59,130,246,0.09) 0%, transparent 65%); pointer-events: none;"></div>
+    <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);"></div>
+    <div style="position: relative; max-width: 760px; margin: 0 auto;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: #111113; border: 1px solid #27272A; border-radius: 6px; padding: 4px 12px; margin-bottom: 28px;">
+        <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em;">Legal</span>
+      </div>
+      <h1 class="policy-h1" style="font-size: 52px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 18px; text-wrap: balance;">Privacy Policy</h1>
+      <p style="font-size: 17px; color: #71717A; line-height: 1.7; max-width: 560px; text-wrap: pretty;">This policy applies to all CHUNK-jp tools and browser utilities: <span style="color: #A1A1AA;">Attic, MirrorHealth, Daily Pulse, AgentWatch</span>, Loan Calculator, BMI Calculator, and the Text Encryption Tool.</p>
+      <div style="margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;">
+        <span style="font-size: 13px; color: #52525B;">Last updated:</span>
+        <span style="font-size: 13px; color: #A1A1AA; font-family: 'JetBrains Mono', monospace;">June 25, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div style="max-width: 760px; margin: 0 auto; padding: 0 24px 120px;">
+
+    <!-- ── TL;DR BOX ── -->
+    <div style="background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.18); border-radius: 16px; padding: 36px 40px; margin-bottom: 56px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; right: 0; width: 240px; height: 240px; background: radial-gradient(ellipse at top right, rgba(34,197,94,0.06), transparent 65%); pointer-events: none;"></div>
+      <div style="display: flex; align-items: flex-start; gap: 20px; position: relative;">
+        <div style="width: 44px; height: 44px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.22); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#22C55E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <path d="M10 2L3 5.5v4.5c0 4.1 3.3 7.9 8 9 4.7-1.1 8-4.9 8-9V5.5L10 2Z"></path>
+            <path d="M7 10l2 2 4-4"></path>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 600; color: #22C55E; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">TL;DR — The short version</div>
+          <p style="font-size: 17px; font-weight: 600; color: #FAFAFA; line-height: 1.5; margin-bottom: 16px; letter-spacing: -0.01em;">We don't collect your data. The tools don't send anything anywhere.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #A1A1AA; line-height: 1.5;">
+              <div style="width: 16px; height: 16px; background: rgba(34,197,94,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="8" height="8"><path d="M2 5l2 2 4-4"></path></svg>
+              </div>
+              All computation runs locally on your device — no server receives your data
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #A1A1AA; line-height: 1.5;">
+              <div style="width: 16px; height: 16px; background: rgba(34,197,94,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="8" height="8"><path d="M2 5l2 2 4-4"></path></svg>
+              </div>
+              No accounts, no sign-ups, no tracking pixels, no analytics SDK
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #A1A1AA; line-height: 1.5;">
+              <div style="width: 16px; height: 16px; background: rgba(34,197,94,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="8" height="8"><path d="M2 5l2 2 4-4"></path></svg>
+              </div>
+              Third-party services (hosting, optional ads) are disclosed below in full
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTIONS ── -->
+
+    <!-- 1. What the tools collect -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">01</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">What Our Tools Collect</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75; margin-bottom: 20px;">The CHUNK-jp tools process all data exclusively on your device. At no point does any tool transmit your files, health records, search queries, news reading habits, AI agent logs, financial inputs, or body measurements to an external server.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 12px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M2 9.5L9 3l7 6.5V16H2V9.5Z"/><circle cx="9" cy="12" r="2.5"/><path d="M10.8 13.8l2 2"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Attic</div>
+            <div style="font-size: 14px; color: #71717A; line-height: 1.6;">Builds a file index entirely within macOS sandbox storage. No filenames or paths leave the app.</div>
+          </div>
+        </div>
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 12px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M2 9h3l2-5 4 10 2.5-7 2 4L18 9h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">MirrorHealth</div>
+            <div style="font-size: 14px; color: #71717A; line-height: 1.6;">Reads Apple Health exports only from your local disk. AI analysis runs via Ollama on your machine. Health data never leaves your device.</div>
+          </div>
+        </div>
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 12px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="14" height="14" rx="2"/><path d="M5 6h8M5 9.5h5"/><path d="M11 11.5l1-2 1 2" stroke-width="1.2"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Daily Pulse</div>
+            <div style="font-size: 14px; color: #71717A; line-height: 1.6;">Fetches news from public RSS feeds directly from your device. Summaries are generated locally. Your reading history is stored only in local app data.</div>
+          </div>
+        </div>
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 12px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="1" y="3" width="16" height="11" rx="1.5"/><path d="M7 17h4M9 14v3"/><path d="M4 11l2.5-2.5 2 2 3-3.5"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">AgentWatch</div>
+            <div style="font-size: 14px; color: #71717A; line-height: 1.6;">Monitors AI agent activity through a local CLI process. All telemetry data stays on-device and is never reported externally.</div>
+          </div>
+        </div>
+        <div style="background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="1" width="12" height="14" rx="1.5"/><path d="M6 5h6M6 8h4M6 11h2"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Browser Utilities <span style="font-size: 12px; color: #52525B; font-weight: 400; margin-left: 6px;">Loan · BMI · Text Encryption</span></div>
+            <div style="font-size: 14px; color: #71717A; line-height: 1.6;">All calculations run in-browser. No input data is submitted to any server. Encrypted text exists only in your browser session and is never stored remotely.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Third-party services -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">02</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Third-Party Services</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75; margin-bottom: 24px;">While the tools themselves collect no data, some infrastructure services are involved in hosting and distribution. These are outside CHUNK-jp's control and are governed by their own privacy policies.</p>
+
+      <!-- GitHub Pages -->
+      <div style="border: 1px solid #1E1E23; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+        <div style="background: #111113; padding: 20px 24px; display: flex; align-items: center; gap: 14px;">
+          <div style="width: 32px; height: 32px; background: #18181B; border: 1px solid #27272A; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 16 16" fill="#71717A" width="16" height="16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">GitHub Pages</div>
+            <div style="font-size: 13px; color: #52525B;">Hosting provider for this website</div>
+          </div>
+          <a class="link-blue" href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" style="font-size: 12px; text-decoration: none; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;">Privacy policy ↗</a>
+        </div>
+        <div style="background: #0D0D10; padding: 16px 24px; border-top: 1px solid #18181B;">
+          <p style="font-size: 13px; color: #71717A; line-height: 1.65;">This site is hosted on GitHub Pages. GitHub may collect server logs including your IP address and browser user-agent when you visit. CHUNK-jp does not receive or control this data. Refer to GitHub's privacy statement for details.</p>
+        </div>
+      </div>
+
+      <!-- Google AdSense -->
+      <div style="border: 1px solid #1E1E23; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+        <div style="background: #111113; padding: 20px 24px; display: flex; align-items: center; gap: 14px;">
+          <div style="width: 32px; height: 32px; background: #18181B; border: 1px solid #27272A; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#71717A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="1" y="4" width="16" height="11" rx="1.5"/><path d="M5 8h8M5 11h4"/><path d="M1 7h16" stroke-width="0.9"/></svg>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">Google AdSense <span style="font-size: 11px; color: #52525B; font-weight: 400; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 2px 7px; margin-left: 8px; font-family: 'JetBrains Mono', monospace;">if applicable</span></div>
+            <div style="font-size: 13px; color: #52525B;">Contextual advertising on the web portal</div>
+          </div>
+          <a class="link-blue" href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="font-size: 12px; text-decoration: none; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;">Privacy policy ↗</a>
+        </div>
+        <div style="background: #0D0D10; padding: 16px 24px; border-top: 1px solid #18181B;">
+          <p style="font-size: 13px; color: #71717A; line-height: 1.65;">Where ads are shown on this portal, Google AdSense may use cookies and similar technologies to serve contextual or personalized advertising based on your browsing activity. Google acts as an independent data controller for this. You can manage your ad personalization preferences at <a class="link-blue" href="https://adssettings.google.com" target="_blank" rel="noopener" style="text-decoration: none;">adssettings.google.com</a>.</p>
+        </div>
+      </div>
+
+      <!-- No analytics -->
+      <div style="border: 1px solid rgba(34,197,94,0.14); border-radius: 12px; overflow: hidden;">
+        <div style="background: rgba(34,197,94,0.04); padding: 20px 24px; display: flex; align-items: center; gap: 14px;">
+          <div style="width: 32px; height: 32px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.18); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M13 3L6 10M3 13l3-3"/><path d="M10 3h3v3" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px; color: #22C55E;">No Analytics</div>
+            <div style="font-size: 13px; color: #52525B;">We run no analytics platform of our own</div>
+          </div>
+        </div>
+        <div style="background: #0D0D10; padding: 16px 24px; border-top: 1px solid rgba(34,197,94,0.1);">
+          <p style="font-size: 13px; color: #71717A; line-height: 1.65;">CHUNK-jp does not use Google Analytics, Mixpanel, Amplitude, Plausible, or any other analytics service. There is no tracking code embedded by CHUNK-jp on any page or in any tool.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Cookies -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">03</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Cookies &amp; Local Storage</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75; margin-bottom: 24px;">CHUNK-jp sets no cookies of its own. The browser utilities may use <code style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 1px 6px; color: #A1A1AA;">localStorage</code> solely to preserve your in-session state (e.g. calculation inputs) between page refreshes. This data never leaves your browser.</p>
+
+      <div class="cookie-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 10px; padding: 18px 20px;">
+          <div style="font-size: 12px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">CHUNK-jp sets</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #27272A; border-radius: 50%; flex-shrink: 0;"></div>
+              No tracking cookies
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #27272A; border-radius: 50%; flex-shrink: 0;"></div>
+              No session cookies
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #27272A; border-radius: 50%; flex-shrink: 0;"></div>
+              No persistent cookies
+            </div>
+          </div>
+        </div>
+        <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 10px; padding: 18px 20px;">
+          <div style="font-size: 12px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">May be set by</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #3B82F6; border-radius: 50%; flex-shrink: 0;"></div>
+              GitHub Pages (infrastructure)
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #3B82F6; border-radius: 50%; flex-shrink: 0;"></div>
+              Google AdSense (if ads shown)
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A;">
+              <div style="width: 5px; height: 5px; background: #27272A; border-radius: 50%; flex-shrink: 0;"></div>
+              localStorage (browser utilities)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Data we never collect -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">04</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Data We Never Collect</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75; margin-bottom: 20px;">To be explicit, none of the following is ever collected, stored, or transmitted by CHUNK-jp or its tools:</p>
+      <div class="data-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Your name or email address
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Health or biometric data
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          File names, paths, or contents
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Financial or loan calculations
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          AI agent prompts or responses
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Encrypted text or decryption keys
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Device identifiers or fingerprints
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 8px; padding: 13px 16px; font-size: 13px; color: #71717A;">
+          <svg viewBox="0 0 14 14" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" width="12" height="12"><path d="M2 2l10 10M12 2L2 12"/></svg>
+          Usage patterns or crash reports
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Open source -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">05</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Verify It Yourself</h2>
+      </div>
+      <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 12px; padding: 28px 32px; display: flex; align-items: flex-start; gap: 20px;">
+        <div style="width: 40px; height: 40px; background: #18181B; border: 1px solid #27272A; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg viewBox="0 0 16 16" fill="#71717A" width="16" height="16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </div>
+        <div>
+          <p style="font-size: 15px; color: #A1A1AA; line-height: 1.7; margin-bottom: 16px;">Every tool is fully open source. You don't have to take our word for it — read the source code directly. If you find a discrepancy between this policy and the code, please open an issue immediately.</p>
+          <a class="btn-gh-light" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            github.com/CHUNK-jp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Your rights -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">06</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Your Rights</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75; margin-bottom: 20px;">Because CHUNK-jp does not collect personal data, most data subject rights (access, deletion, portability) are satisfied by the nature of the architecture itself — there is no data to request or delete. The following applies to any data held by third-party services listed above:</p>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: #18181B; border-radius: 12px; overflow: hidden; border: 1px solid #18181B;">
+        <div class="rights-row" style="background: #111113; padding: 16px 20px; display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start;">
+          <div style="font-size: 13px; font-weight: 600; color: #A1A1AA;">Right of access</div>
+          <div style="font-size: 13px; color: #71717A; line-height: 1.6;">Contact the relevant third-party service (GitHub, Google) directly using the links in Section 02.</div>
+        </div>
+        <div class="rights-row" style="background: #111113; padding: 16px 20px; display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start;">
+          <div style="font-size: 13px; font-weight: 600; color: #A1A1AA;">Right to deletion</div>
+          <div style="font-size: 13px; color: #71717A; line-height: 1.6;">For browser utility localStorage, clear site data in your browser settings at any time.</div>
+        </div>
+        <div class="rights-row" style="background: #111113; padding: 16px 20px; display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start;">
+          <div style="font-size: 13px; font-weight: 600; color: #A1A1AA;">Ad personalization</div>
+          <div style="font-size: 13px; color: #71717A; line-height: 1.6;">Manage or opt out of Google ad personalization at <a class="link-blue" href="https://adssettings.google.com" target="_blank" rel="noopener" style="text-decoration: none;">adssettings.google.com</a>.</div>
+        </div>
+        <div class="rights-row" style="background: #111113; padding: 16px 20px; display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start;">
+          <div style="font-size: 13px; font-weight: 600; color: #A1A1AA;">Questions</div>
+          <div style="font-size: 13px; color: #71717A; line-height: 1.6;">Open a GitHub issue at <a class="link-blue" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener" style="text-decoration: none;">github.com/CHUNK-jp</a> and we will respond promptly.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Changes -->
+    <div style="margin-bottom: 52px;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #18181B;">
+        <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 4px; padding: 2px 8px;">07</span>
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Changes to This Policy</h2>
+      </div>
+      <p style="font-size: 15px; color: #A1A1AA; line-height: 1.75;">If this policy changes, the updated version will be published at this URL with a revised "Last updated" date at the top. Significant changes — such as the introduction of any data collection — will be announced in the relevant GitHub repository. We have no mechanism to notify you proactively, which is intentional: collecting email addresses to send policy updates would itself be a privacy concern.</p>
+    </div>
+
+    <!-- 8. Contact -->
+    <div style="background: #111113; border: 1px solid #1E1E23; border-radius: 16px; padding: 36px 40px; display: flex; align-items: flex-start; gap: 24px;">
+      <div style="width: 48px; height: 48px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <path d="M10 2L3 5.5v4.5c0 4.1 3.3 7.9 8 9 4.7-1.1 8-4.9 8-9V5.5L10 2Z"></path>
+          <path d="M7 10l2 2 4-4"></path>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Contact</div>
+        <h3 style="font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px;">Questions or concerns?</h3>
+        <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 20px;">If you have questions about this privacy policy or any aspect of how your data is handled, please open an issue on GitHub or reach out via our <a class="link-blue" href="contact.html" style="text-decoration: none;">contact page</a>. All questions are welcomed and will be answered publicly so the answers benefit everyone.</p>
+        <a class="btn-primary" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">
+          Open an issue on GitHub
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <div style="width: 30px; height: 30px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="#3B82F6">
+                <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+                <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+                <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+                <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+              </svg>
+            </div>
+            <span style="font-size: 14px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">chunk-jp</span>
+          </div>
+          <p style="font-size: 13px; color: #52525B; max-width: 280px; line-height: 1.7; margin-bottom: 18px;">Privacy-first Mac tools and browser utilities. All local. All free. All open source.</p>
+          <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener" class="footer-gh" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A; text-decoration: none; background: #111113; border: 1px solid #27272A; border-radius: 7px; padding: 7px 14px;">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            github.com/CHUNK-jp
+          </a>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Mac Tools</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <a class="footer-link" href="https://CHUNK-jp.github.io/attic/" target="_blank" rel="noopener">Attic</a>
+            <a class="footer-link" href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener">MirrorHealth</a>
+            <a class="footer-link" href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener">Daily Pulse</a>
+            <a class="footer-link" href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener">AgentWatch</a>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Browser Utilities</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <a class="footer-link" href="https://CHUNK-jp.github.io/loan-calculator/" target="_blank" rel="noopener">Loan Calculator</a>
+            <a class="footer-link" href="https://CHUNK-jp.github.io/bmi-calculator/" target="_blank" rel="noopener">BMI Calculator</a>
+            <a class="footer-link" href="https://CHUNK-jp.github.io/encryption-tool/" target="_blank" rel="noopener">Text Encryption Tool</a>
+            <span style="display: block; width: 1px; height: 4px;"></span>
+            <a class="footer-link" href="privacy.html" style="color: #3B82F6;">Privacy Policy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="border-top: 1px solid #18181B; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <span style="font-size: 13px; color: #3F3F46;">© 2026 CHUNK-jp · All tools free and open source.</span>
+          <a class="footer-link" href="contact.html">Contact</a>
+        </div>
+        <div style="font-size: 12px; color: #27272A; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em;">privacy-first · local-first · macOS + web</div>
+      </div>
+    </div>
+  </footer>
+
 </div>
-
-<div class="section">
-
-  <div class="policy-block">
-    <h2>基本方針</h2>
-    <p>CHUNK-jp（以下「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーは、当サイトにおける情報の収集・利用方法について説明するものです。</p>
-  </div>
-
-  <div class="policy-block">
-    <h2>ツールについて</h2>
-    <p>当サイトで提供するすべてのツール（ローン計算機・BMI計算機・文章暗号化ツール等）は、ブラウザ上で完結して動作します。入力されたデータは外部サーバーへ一切送信されず、お使いのデバイスから外部に出ることはありません。</p>
-    <ul>
-      <li>サーバーへのデータ送信：なし</li>
-      <li>入力内容の保存・収集：なし</li>
-      <li>外部へのデータ共有：なし</li>
-    </ul>
-  </div>
-
-  <div class="policy-block">
-    <h2>Google Analytics</h2>
-    <p>当サイトはアクセス解析のため Google Analytics を使用しています。Google Analytics は Cookie を使用して匿名のトラフィックデータ（ページビュー数・滞在時間・アクセス元等）を収集します。収集されたデータは個人を特定するものではなく、サイト改善の目的のみに利用します。</p>
-    <p style="margin-top:12px;">Google のプライバシーポリシーについては <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">こちら</a> をご確認ください。また、Google Analytics のオプトアウトは <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google アナリティクス オプトアウト アドオン</a> からご利用いただけます。</p>
-  </div>
-
-  <div class="policy-block">
-    <h2>Google AdSense</h2>
-    <p>当サイトは広告配信サービスとして Google AdSense を使用しています。Google AdSense は、ユーザーの興味に基づいた広告を表示するために Cookie を使用することがあります。第三者配信事業者や広告ネットワークによる Cookie の使用については、各社のプライバシーポリシーをご参照ください。</p>
-    <p style="margin-top:12px;">Google の広告設定については <a href="https://adssettings.google.com/" target="_blank" rel="noopener">広告設定ページ</a> から管理・変更できます。</p>
-  </div>
-
-  <div class="policy-block">
-    <h2>Cookieについて</h2>
-    <p>当サイトでは、Google Analytics および Google AdSense の機能提供のために Cookie を使用しています。Cookie はブラウザの設定から無効化することができますが、一部機能が正常に動作しなくなる場合があります。</p>
-    <ul>
-      <li>利用目的：アクセス解析・広告配信</li>
-      <li>取得情報：IPアドレス・ブラウザ情報・閲覧ページ等（匿名）</li>
-      <li>第三者提供：Google Inc.（各ポリシーに基づく範囲内）</li>
-    </ul>
-  </div>
-
-  <div class="policy-block">
-    <h2>お問い合わせ</h2>
-    <p>本ポリシーに関するご質問や、個人情報の取り扱いについてのお問い合わせは <a href="contact.html">お問い合わせページ</a> よりご連絡ください。</p>
-  </div>
-
-</div>
-
-<footer>
-  <p>© 2025 CHUNK-jp</p>
-  <p><a href="contact.html">お問い合わせ</a></p>
-</footer>
 
 </body>
 </html>
