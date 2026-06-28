@@ -3,504 +3,561 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582357233567372"
      crossorigin="anonymous"></script>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>chunk-jp — Mac tools & browser utilities</title>
-  <meta name="description" content="A growing collection of Mac tools and browser utilities built on one rule: your data stays on your device.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="95r7tjU2_62CnA-i4NQ9ec42nfMWHtnusEBP5__3Mmg" />
+  <title>CHUNK-jp — Privacy-first Mac tools & browser utilities</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
+    a { text-decoration: none; color: inherit; }
     ::selection { background: rgba(59,130,246,0.25); color: #FAFAFA; }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
-    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.45; transform: scale(0.8); } }
-    @keyframes fade-in-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
 
-    .nav-link { font-size: 14px; color: #71717A; text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.8); }
+    }
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    .nav-link {
+      font-size: 14px; color: #71717A; padding: 6px 12px; border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
     .nav-link:hover { color: #FAFAFA; background: #111113; }
 
-    .btn-gh { display: inline-flex; align-items: center; gap: 8px; background: #111113; border: 1px solid #27272A; color: #A1A1AA; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px; text-decoration: none; flex-shrink: 0; transition: border-color 0.15s, color 0.15s; }
+    .btn-gh {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #111113; border: 1px solid #27272A; color: #A1A1AA;
+      font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px;
+      transition: border-color 0.15s, color 0.15s;
+    }
     .btn-gh:hover { border-color: #3F3F46; color: #FAFAFA; }
 
-    .scroll-cta { transition: opacity 0.15s; }
-    .scroll-cta:hover { opacity: 0.7; }
+    /* ── HERO SCROLL ARROW ── */
+    .scroll-arrow { display: inline-flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity 0.15s; }
+    .scroll-arrow:hover { opacity: 0.7; }
 
-    .tool-card { display: flex; flex-direction: column; background: #111113; border: 1px solid #1E1E23; border-radius: 16px; padding: 36px 40px; text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: border-color 0.15s, background 0.15s; }
-    .tool-card:hover { border-color: rgba(59,130,246,0.32); background: #121214; }
+    /* ── MAC TOOL CARDS ── */
+    .mac-card {
+      display: flex; flex-direction: column;
+      background: #111113; border: 1px solid #1E1E23; border-radius: 16px;
+      padding: 36px 40px; color: inherit; position: relative; overflow: hidden;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .mac-card:hover { border-color: rgba(59,130,246,0.32); background: #121214; }
 
-    .util-item { display: flex; align-items: center; gap: 16px; background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; text-decoration: none; color: inherit; transition: border-color 0.15s, background 0.15s; }
-    .util-item:hover { border-color: rgba(59,130,246,0.22); background: #0F0F12; }
+    /* ── BROWSER UTILITY CARDS ── */
+    .util-card {
+      display: flex; align-items: center; gap: 16px;
+      background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px;
+      padding: 20px 24px; color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .util-card:hover { border-color: rgba(59,130,246,0.22); background: #0F0F12; }
 
-    .phil-item { background: #0E0E10; padding: 28px 32px; transition: background 0.15s; }
-    .phil-item:hover { background: #111113; }
+    /* ── PHILOSOPHY CELLS ── */
+    .phi-cell { background: #0E0E10; padding: 28px 32px; transition: background 0.15s; }
+    .phi-cell:hover { background: #111113; }
 
-    .footer-link { font-size: 13px; color: #71717A; text-decoration: none; transition: color 0.15s; }
+    /* ── WHO FOR CARDS ── */
+    .who-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px;
+      padding: 20px 24px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .who-card:hover { border-color: rgba(59,130,246,0.2); background: #0F0F12; }
+
+    /* ── FOOTER LINKS ── */
+    .footer-link { font-size: 13px; color: #71717A; transition: color 0.15s; }
     .footer-link:hover { color: #FAFAFA; }
 
-    .footer-gh { transition: color 0.15s, border-color 0.15s; }
+    .footer-gh {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: #71717A;
+      background: #111113; border: 1px solid #27272A; border-radius: 7px;
+      padding: 7px 14px;
+      transition: color 0.15s, border-color 0.15s;
+    }
     .footer-gh:hover { color: #FAFAFA; border-color: #3F3F46; }
 
     @media (max-width: 640px) {
-      body { overflow-x: hidden; }
-      .nav-inner { padding: 0 16px !important; gap: 12px !important; }
-      .nav-links-wrap { display: none !important; }
-      .hero-section { padding: 88px 20px 64px !important; }
-      .hero-badge { max-width: calc(100% - 24px) !important; flex-wrap: wrap !important; text-align: center !important; }
-      .hero-h1 { font-size: 38px !important; }
-      .crafted-badge { flex-wrap: wrap !important; justify-content: center !important; padding: 12px 16px !important; }
-      .tools-grid-mac, .tools-grid-browser { grid-template-columns: minmax(0, 1fr) !important; }
-      .tool-card { padding: 28px 22px !important; }
-      .util-item { padding: 16px 18px !important; }
-      .phil-pad { padding: 48px 20px 40px !important; }
-      .phil-grid { grid-template-columns: minmax(0, 1fr) !important; }
-      .phil-item { padding: 22px 20px !important; }
-      .footer-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+      .hero-h1 { font-size: 48px !important; }
+      .mac-grid { grid-template-columns: 1fr !important; }
+      .util-grid { grid-template-columns: 1fr !important; }
+      .phi-grid { grid-template-columns: 1fr !important; }
+      .who-grid { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr !important; }
+      .nav-links-center { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-<div style="min-height: 100vh; background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, sans-serif;">
+<!-- ── NAVIGATION ── -->
+<nav style="position: sticky; top: 0; z-index: 100;">
+  <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
+      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+        <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
+            <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+            <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+            <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+            <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+          </svg>
+        </div>
+        <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
+      </div>
+      <div class="nav-links-center" style="display: flex; align-items: center; gap: 4px; flex: 1;">
+        <a href="#mac-tools" class="nav-link">Mac Tools</a>
+        <a href="#browser-tools" class="nav-link">Browser Utilities</a>
+        <a href="#philosophy" class="nav-link">Philosophy</a>
+        <a href="#who-for" class="nav-link">Who it's for</a>
+      </div>
+      <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="btn-gh">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
 
-  <!-- ── NAVIGATION ── -->
-  <nav style="position: sticky; top: 0; z-index: 100;">
-    <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-      <div class="nav-inner" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
-        <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-            <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
+<!-- ── HERO ── -->
+<section style="position: relative; padding: 112px 24px 96px; text-align: center; overflow: hidden;">
+  <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(59,130,246,0.11) 0%, transparent 68%); pointer-events: none;"></div>
+  <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%);"></div>
+
+  <div style="position: relative; max-width: 800px; margin: 0 auto; animation: fade-in-up 0.6s ease both;">
+    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18); border-radius: 100px; padding: 6px 16px; margin-bottom: 36px;">
+      <div style="width: 6px; height: 6px; border-radius: 50%; background: #3B82F6; animation: pulse-dot 2.4s ease-in-out infinite;"></div>
+      <span style="font-size: 13px; color: #60A5FA; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">Mac tools + browser utilities · all private · all free</span>
+    </div>
+
+    <h1 class="hero-h1" style="font-size: 80px; font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 26px; text-wrap: balance;">
+      Your data never<br>leaves <span style="color: #3B82F6;">home.</span>
+    </h1>
+
+    <p style="font-size: 19px; color: #71717A; line-height: 1.7; max-width: 540px; margin: 0 auto 28px; text-wrap: pretty;">
+      A growing collection of Mac tools and browser utilities built on one rule: your data stays on your device.
+    </p>
+
+    <div style="max-width: 560px; margin: 0 auto 44px; padding: 20px 26px; background: rgba(255,255,255,0.018); border: 1px solid #1E1E23; border-left: 2px solid rgba(59,130,246,0.3); border-radius: 10px; text-align: left;">
+      <p style="font-size: 14px; color: #52525B; line-height: 1.85; font-style: italic; text-wrap: pretty; margin: 0;">The reason for not relying on the cloud is simple. Every time I searched for a file, analyzed health data, or read the news, I disliked the feeling that my information was being sent off to some server. So I decided to build tools where everything stays on my own machine.</p>
+    </div>
+
+    <div style="display: inline-flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 100px; padding: 9px 20px 9px 14px;">
+      <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg viewBox="0 0 10 10" width="8" height="8" fill="#3B82F6">
+          <rect x="0.5" y="0.5" width="3.5" height="3.5" rx="0.6"></rect>
+          <rect x="6" y="0.5" width="3.5" height="3.5" rx="0.6"></rect>
+          <rect x="0.5" y="6" width="3.5" height="3.5" rx="0.6"></rect>
+          <rect x="6" y="6" width="3.5" height="3.5" rx="0.6"></rect>
+        </svg>
+      </div>
+      <span style="font-size: 14px; color: #71717A;">Crafted by</span>
+      <span style="font-size: 14px; font-weight: 600; color: #FAFAFA; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">CHUNK-jp</span>
+      <span style="width: 1px; height: 14px; background: #27272A;"></span>
+      <span style="font-size: 13px; color: #52525B;">independent developer</span>
+    </div>
+
+    <div style="margin-top: 56px;">
+      <a href="#mac-tools" class="scroll-arrow">
+        <span style="font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 10px; letter-spacing: 0.12em; color: #3F3F46;">Explore the collection</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="#3F3F46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M8 3v9M4.5 8.5l3.5 3.5 3.5-3.5"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIER 1: MAC TOOLS ── -->
+<section id="mac-tools" style="padding: 64px 24px 80px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
+      <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Mac Tools</h2>
+      <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">local-first · macOS</span>
+    </div>
+
+    <div class="mac-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
+
+      <!-- ── Attic ── -->
+      <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="mac-card">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
+        <svg style="position: absolute; bottom: -24px; right: -24px; opacity: 0.055; pointer-events: none;" width="260" height="260" viewBox="0 0 260 260" fill="none">
+          <circle cx="220" cy="220" r="44" stroke="#3B82F6" stroke-width="1.3"></circle>
+          <circle cx="220" cy="220" r="78" stroke="#3B82F6" stroke-width="1.3"></circle>
+          <circle cx="220" cy="220" r="112" stroke="#3B82F6" stroke-width="1.3"></circle>
+          <circle cx="220" cy="220" r="148" stroke="#3B82F6" stroke-width="1.3"></circle>
+          <line x1="237" y1="203" x2="255" y2="185" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"></line>
+        </svg>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
+          <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+              <path d="M3 11.5L12 3l9 8.5V21H3V11.5Z"></path>
+              <circle cx="12" cy="15.5" r="3.5"></circle>
+              <path d="M14.5 18l2.5 2.5"></path>
+            </svg>
+          </div>
+          <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">01</span>
+        </div>
+        <div style="flex: 1;">
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">Attic</h3>
+          <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 14px;">Local-first file search for Mac. Find any file in milliseconds — without uploading a single byte.</p>
+          <p style="font-size: 12px; color: #3F3F46; line-height: 1.8; font-style: italic; border-top: 1px solid #1E1E23; padding-top: 14px; margin-bottom: 20px;">Every time I forgot a filename and got stuck, cloud search tools demanded privacy in exchange for convenience. I built this so I could search my files naturally — without giving up control.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local index</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">macOS</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">free</span>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
+          Visit Attic
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </div>
+      </a>
+
+      <!-- ── MirrorHealth ── -->
+      <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="mac-card">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
+        <svg style="position: absolute; bottom: 24px; left: 0; opacity: 0.075; pointer-events: none;" width="100%" height="60" viewBox="0 0 520 60" preserveAspectRatio="none" fill="none">
+          <path d="M0 30 L110 30 L128 30 L142 6 L157 55 L172 10 L186 30 L260 30 L380 30 L480 30 L520 30" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
+          <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+              <path d="M8 13h1.5l1-2 2 4 1-2H18" stroke-width="1.2"></path>
+            </svg>
+          </div>
+          <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">02</span>
+        </div>
+        <div style="flex: 1;">
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">MirrorHealth</h3>
+          <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 14px;">Analyzes your Apple Health data using local AI (Ollama). Zero data leaves your device — ever.</p>
+          <p style="font-size: 12px; color: #3F3F46; line-height: 1.8; font-style: italic; border-top: 1px solid #1E1E23; padding-top: 14px; margin-bottom: 20px;">Apple Health data is among the most sensitive personal information there is. I was committed to a system where analysis runs entirely on your own machine — never leaving your device.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local AI</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">Ollama</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">Apple Health</span>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
+          Visit MirrorHealth
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </div>
+      </a>
+
+      <!-- ── Daily Pulse ── -->
+      <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="mac-card">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
+        <svg style="position: absolute; bottom: 28px; right: 36px; opacity: 0.065; pointer-events: none;" width="210" height="96" viewBox="0 0 210 96" fill="none">
+          <line x1="0" y1="8" x2="200" y2="8" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+          <line x1="0" y1="24" x2="162" y2="24" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+          <line x1="0" y1="40" x2="185" y2="40" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+          <line x1="0" y1="56" x2="145" y2="56" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+          <line x1="0" y1="72" x2="172" y2="72" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+          <line x1="0" y1="88" x2="130" y2="88" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
+        </svg>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
+          <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <path d="M7 9h10M7 13h6"></path>
+              <path d="M14 16.5l1.2-2 1.5 3 1.3-2H20" stroke-width="1.2"></path>
+            </svg>
+          </div>
+          <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">03</span>
+        </div>
+        <div style="flex: 1;">
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">Daily Pulse</h3>
+          <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 14px;">News summarization for Mac. Get a clear picture of the day's headlines — without the noise or the tracking.</p>
+          <p style="font-size: 12px; color: #3F3F46; line-height: 1.8; font-style: italic; border-top: 1px solid #1E1E23; padding-top: 14px; margin-bottom: 20px;">I got tired of the feeling that every time I opened a news app, my behavior was being quietly recorded. I wanted a tool that let me catch up on today's headlines quickly — without the tracking.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">news</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">summarization</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">macOS</span>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
+          Visit Daily Pulse
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </div>
+      </a>
+
+      <!-- ── AgentWatch ── -->
+      <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="mac-card">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
+        <svg style="position: absolute; bottom: 20px; right: 28px; opacity: 0.07; pointer-events: none;" width="210" height="100" viewBox="0 0 210 100" fill="none">
+          <line x1="0" y1="90" x2="210" y2="90" stroke="#3B82F6" stroke-width="0.9"></line>
+          <line x1="0" y1="68" x2="210" y2="68" stroke="#3B82F6" stroke-width="0.9"></line>
+          <line x1="0" y1="46" x2="210" y2="46" stroke="#3B82F6" stroke-width="0.9"></line>
+          <line x1="0" y1="24" x2="210" y2="24" stroke="#3B82F6" stroke-width="0.9"></line>
+          <polyline points="10,82 45,70 80,56 115,60 150,36 185,18 210,8" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></polyline>
+          <circle cx="45" cy="70" r="3" fill="#3B82F6"></circle>
+          <circle cx="80" cy="56" r="3" fill="#3B82F6"></circle>
+          <circle cx="115" cy="60" r="3" fill="#3B82F6"></circle>
+          <circle cx="150" cy="36" r="3" fill="#3B82F6"></circle>
+          <circle cx="185" cy="18" r="3" fill="#3B82F6"></circle>
+        </svg>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
+          <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+              <rect x="2" y="4" width="20" height="14" rx="2"></rect>
+              <path d="M9 22h6M12 18v4"></path>
+              <path d="M6 14l3.5-3.5 2.5 2 4-5"></path>
+              <circle cx="17.5" cy="7.5" r="1" fill="#3B82F6" stroke="none"></circle>
+            </svg>
+          </div>
+          <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">04</span>
+        </div>
+        <div style="flex: 1;">
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">AgentWatch</h3>
+          <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 14px;">Real-time CLI dashboard for AI agent cost and behavior monitoring. Full observability, zero cloud.</p>
+          <p style="font-size: 12px; color: #3F3F46; line-height: 1.8; font-style: italic; border-top: 1px solid #1E1E23; padding-top: 14px; margin-bottom: 20px;">Once I started using AI agents, I found myself uneasy about not being able to see what the agent was doing or how much it was costing. I built this tool to take back visibility.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">CLI</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">real-time</span>
+            <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local</span>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
+          Visit AgentWatch
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TIER 2: BROWSER UTILITIES ── -->
+<section id="browser-tools" style="padding: 0 24px 100px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
+      <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Browser Utilities</h2>
+      <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">instant-use · no install · in-browser</span>
+    </div>
+
+    <div class="util-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px;">
+
+      <a href="https://chunk-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="util-card">
+        <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+            <rect x="3" y="2" width="14" height="16" rx="2"></rect>
+            <path d="M7 7h6M7 10h4M7 13h2"></path>
+            <path d="M13 11v4M11 13h4" stroke-width="1.6"></path>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Loan Calculator</div>
+          <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Calculate loan payments instantly in your browser</div>
+        </div>
+        <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+      </a>
+
+      <a href="https://chunk-jp.github.io/bmi-calculator/" target="_blank" rel="noopener" class="util-card">
+        <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+            <circle cx="10" cy="5" r="2.5"></circle>
+            <path d="M6 18v-5a4 4 0 018 0v5"></path>
+            <path d="M4 18h12"></path>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">BMI Calculator</div>
+          <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Quick body mass index calculation, no data stored</div>
+        </div>
+        <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+      </a>
+
+      <a href="https://chunk-jp.github.io/encryption-tool/" target="_blank" rel="noopener" class="util-card">
+        <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+            <rect x="5" y="9" width="10" height="8" rx="1.5"></rect>
+            <path d="M7 9V7a3 3 0 016 0v2"></path>
+            <circle cx="10" cy="13.5" r="1" fill="#3B82F6" stroke="none"></circle>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Text Encryption Tool</div>
+          <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Encrypt and decrypt text directly in your browser</div>
+        </div>
+        <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+      </a>
+
+    </div>
+
+    <p style="margin-top: 16px; font-size: 12px; color: #3F3F46; font-family: 'JetBrains Mono', monospace;">All browser utilities run entirely client-side — no server, no tracking, no data sent anywhere.</p>
+  </div>
+</section>
+
+<!-- ── PHILOSOPHY ── -->
+<section id="philosophy" style="padding: 0 24px 100px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="background: #0E0E10; border: 1px solid #18181B; border-radius: 18px; overflow: hidden; position: relative;">
+      <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 56px; background: linear-gradient(to bottom, rgba(59,130,246,0.5), transparent);"></div>
+      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(59,130,246,0.045) 0%, transparent 70%); pointer-events: none;"></div>
+
+      <div style="position: relative; padding: 72px 64px 64px; text-align: center;">
+        <div style="display: inline-block; font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Philosophy</div>
+        <h2 style="font-size: 36px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; max-width: 620px; margin: 0 auto 18px; text-wrap: balance;">Software should work for you.<br>Not harvest from you.</h2>
+        <p style="font-size: 15px; color: #71717A; max-width: 500px; margin: 0 auto 56px; line-height: 1.75;">Whether it's a full Mac app or a lightweight browser tool — every piece of software here runs locally, stores nothing remotely, and requires no account.</p>
+
+        <div class="phi-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #27272A; border-radius: 12px; overflow: hidden; text-align: left;">
+
+          <div class="phi-cell">
+            <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <path d="M9 2L2 5.5v4.5c0 4.1 3.3 7.9 8 9 4.7-1.1 8-4.9 8-9V5.5L9 2Z"></path>
+              </svg>
+            </div>
+            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">Local by design</h4>
+            <p style="font-size: 13px; color: #71717A; line-height: 1.7; margin-bottom: 10px;">Every computation runs on your hardware. No network requests, no cloud sync, no backend.</p>
+            <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; font-style: italic;">I know the cloud is convenient. But I didn't want to accept the trade-off where your data becomes training material, gets used for ad targeting, or disappears one day when a service shuts down.</p>
+          </div>
+
+          <div class="phi-cell">
+            <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <polyline points="16 18 22 12 16 6" transform="scale(0.65) translate(2,2)"></polyline>
+                <polyline points="8 6 2 12 8 18" transform="scale(0.65) translate(2,2)"></polyline>
+              </svg>
+            </div>
+            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">Open source</h4>
+            <p style="font-size: 13px; color: #71717A; line-height: 1.7; margin-bottom: 10px;">Every line of code is public. Read and verify the privacy guarantees yourself.</p>
+            <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; font-style: italic;">Tools that don't show you what they're doing make me uneasy. Trust doesn't come from a black box.</p>
+          </div>
+
+          <div class="phi-cell">
+            <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <rect x="4" y="7" width="10" height="9" rx="1.5"></rect>
+                <path d="M6 7V5.5a3 3 0 016 0V7"></path>
+              </svg>
+            </div>
+            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">No accounts, ever</h4>
+            <p style="font-size: 13px; color: #71717A; line-height: 1.7; margin-bottom: 10px;">No email, no sign-up, no subscription. Download, open, use. Software the way it used to be.</p>
+            <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; font-style: italic;">Account registration tends to be the gateway to data collection. I was determined to make something you can use without handing anything over.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO THIS IS FOR ── -->
+<section id="who-for" style="padding: 0 24px 100px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
+      <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Who this is for</h2>
+      <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">you, probably</span>
+    </div>
+
+    <div class="who-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+
+      <div class="who-card">
+        <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.13); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+          <svg viewBox="0 0 10 10" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="7" height="7"><path d="M1.5 5l2 2 5-4"></path></svg>
+        </div>
+        <p style="font-size: 14px; color: #A1A1AA; line-height: 1.65;">People who want to know exactly where their data goes</p>
+      </div>
+
+      <div class="who-card">
+        <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.13); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+          <svg viewBox="0 0 10 10" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="7" height="7"><path d="M1.5 5l2 2 5-4"></path></svg>
+        </div>
+        <p style="font-size: 14px; color: #A1A1AA; line-height: 1.65;">People tired of subscription fatigue</p>
+      </div>
+
+      <div class="who-card">
+        <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.13); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+          <svg viewBox="0 0 10 10" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="7" height="7"><path d="M1.5 5l2 2 5-4"></path></svg>
+        </div>
+        <p style="font-size: 14px; color: #A1A1AA; line-height: 1.65;">People who use AI tools but don't want to give up privacy</p>
+      </div>
+
+      <div class="who-card">
+        <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.13); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+          <svg viewBox="0 0 10 10" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="7" height="7"><path d="M1.5 5l2 2 5-4"></path></svg>
+        </div>
+        <p style="font-size: 14px; color: #A1A1AA; line-height: 1.65;">People who simply value everything running on their own Mac</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <div style="width: 30px; height: 30px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="#3B82F6">
               <rect x="1" y="1" width="6" height="6" rx="1"></rect>
               <rect x="9" y="1" width="6" height="6" rx="1"></rect>
               <rect x="1" y="9" width="6" height="6" rx="1"></rect>
               <rect x="9" y="9" width="6" height="6" rx="1"></rect>
             </svg>
           </div>
-          <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
+          <span style="font-size: 14px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">chunk-jp</span>
         </div>
-        <div class="nav-links-wrap" style="display: flex; align-items: center; gap: 4px; flex: 1;">
-          <a class="nav-link" href="#mac-tools">Mac Tools</a>
-          <a class="nav-link" href="#browser-tools">Browser Utilities</a>
-          <a class="nav-link" href="#philosophy">Philosophy</a>
-        </div>
-        <a class="btn-gh" href="https://github.com/CHUNK-jp" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-          GitHub
+        <p style="font-size: 13px; color: #52525B; max-width: 280px; line-height: 1.7; margin-bottom: 18px;">Privacy-first Mac tools and browser utilities. All local. All free. All open source.</p>
+        <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="footer-gh">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          github.com/chunk-jp
         </a>
       </div>
-    </div>
-  </nav>
 
-  <!-- ── HERO ── -->
-  <section class="hero-section" style="position: relative; padding: 112px 24px 96px; text-align: center; overflow: hidden;">
-    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(59,130,246,0.11) 0%, transparent 68%); pointer-events: none;"></div>
-    <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 0%, transparent 75%);"></div>
-
-    <div style="position: relative; max-width: 800px; margin: 0 auto; animation: fade-in-up 0.6s ease both;">
-      <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18); border-radius: 100px; padding: 6px 16px; margin-bottom: 36px;">
-        <div style="width: 6px; height: 6px; border-radius: 50%; background: #3B82F6; animation: pulse-dot 2.4s ease-in-out infinite;"></div>
-        <span style="font-size: 13px; color: #60A5FA; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">Mac tools + browser utilities · all private · all free</span>
-      </div>
-
-      <h1 class="hero-h1" style="font-size: 80px; font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 26px; text-wrap: balance;">
-        Your data never<br>leaves <span style="color: #3B82F6;">home.</span>
-      </h1>
-
-      <p style="font-size: 19px; color: #71717A; line-height: 1.7; max-width: 540px; margin: 0 auto 24px; text-wrap: pretty;">
-        A growing collection of Mac tools and browser utilities built on one rule: your data stays on your device.
-      </p>
-
-      <p style="font-size: 14px; color: #52525B; line-height: 1.85; max-width: 520px; margin: 0 auto 40px; text-wrap: pretty;">
-        クラウドに頼らない理由は単純です。ファイルを検索するたびに、健康データを分析するたびに、ニュースを読むたびに、その情報がどこかのサーバーに送られているという感覚が好きではありませんでした。だから、すべてが自分のマシンの中で完結するツールを作ることにしました。
-      </p>
-
-      <div class="crafted-badge" style="display: inline-flex; align-items: center; gap: 10px; background: #111113; border: 1px solid #1E1E23; border-radius: 100px; padding: 9px 20px 9px 14px;">
-        <div style="width: 24px; height: 24px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg viewBox="0 0 10 10" width="8" height="8" fill="#3B82F6">
-            <rect x="0.5" y="0.5" width="3.5" height="3.5" rx="0.6"></rect>
-            <rect x="6" y="0.5" width="3.5" height="3.5" rx="0.6"></rect>
-            <rect x="0.5" y="6" width="3.5" height="3.5" rx="0.6"></rect>
-            <rect x="6" y="6" width="3.5" height="3.5" rx="0.6"></rect>
-          </svg>
-        </div>
-        <span style="font-size: 14px; color: #71717A;">Crafted by</span>
-        <span style="font-size: 14px; font-weight: 600; color: #FAFAFA; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">CHUNK-jp</span>
-        <span style="width: 1px; height: 14px; background: #27272A;"></span>
-        <span style="font-size: 13px; color: #52525B;">independent developer</span>
-      </div>
-
-      <div style="margin-top: 56px;">
-        <a href="#mac-tools" class="scroll-cta" style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none;">
-          <span style="font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 10px; letter-spacing: 0.12em; color: #3F3F46;">Explore the collection</span>
-          <svg viewBox="0 0 16 16" fill="none" stroke="#3F3F46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M8 3v9M4.5 8.5l3.5 3.5 3.5-3.5"></path></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── TIER 1: MAC TOOLS ── -->
-  <section id="mac-tools" style="padding: 64px 24px 80px;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-
-      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
-        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Mac Tools</h2>
-        <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">local-first · macOS</span>
-      </div>
-
-      <div class="tools-grid-mac" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
-
-        <!-- ── Attic ── -->
-        <a href="https://CHUNK-jp.github.io/attic/" target="_blank" rel="noopener" class="tool-card">
-          <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
-          <svg style="position: absolute; bottom: -24px; right: -24px; opacity: 0.055; pointer-events: none;" width="260" height="260" viewBox="0 0 260 260" fill="none">
-            <circle cx="220" cy="220" r="44" stroke="#3B82F6" stroke-width="1.3"></circle>
-            <circle cx="220" cy="220" r="78" stroke="#3B82F6" stroke-width="1.3"></circle>
-            <circle cx="220" cy="220" r="112" stroke="#3B82F6" stroke-width="1.3"></circle>
-            <circle cx="220" cy="220" r="148" stroke="#3B82F6" stroke-width="1.3"></circle>
-            <line x1="237" y1="203" x2="255" y2="185" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"></line>
-          </svg>
-
-          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
-            <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
-                <path d="M3 11.5L12 3l9 8.5V21H3V11.5Z"></path>
-                <circle cx="12" cy="15.5" r="3.5"></circle>
-                <path d="M14.5 18l2.5 2.5"></path>
-              </svg>
-            </div>
-            <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">01</span>
-          </div>
-          <div style="flex: 1;">
-            <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">Attic</h3>
-            <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 12px;">Local-first file search for Mac. Find any file in milliseconds — without uploading a single byte.</p>
-            <p style="font-size: 13px; color: #3F3F46; line-height: 1.75; margin-bottom: 20px;">ファイル名を忘れて検索に詰まるたび、クラウドの検索ツールは便利さの代わりにプライバシーを要求してきました。それが嫌で、ローカルのまま自然言語で検索できるツールを作りました。</p>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local index</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">macOS</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">free</span>
-            </div>
-          </div>
-          <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
-            Visit Attic
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-          </div>
-        </a>
-
-        <!-- ── MirrorHealth ── -->
-        <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="tool-card">
-          <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
-          <svg style="position: absolute; bottom: 24px; left: 0; opacity: 0.075; pointer-events: none;" width="100%" height="60" viewBox="0 0 520 60" preserveAspectRatio="none" fill="none">
-            <path d="M0 30 L110 30 L128 30 L142 6 L157 55 L172 10 L186 30 L260 30 L380 30 L480 30 L520 30" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-
-          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
-            <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
-                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                <path d="M8 13h1.5l1-2 2 4 1-2H18" stroke-width="1.2"></path>
-              </svg>
-            </div>
-            <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">02</span>
-          </div>
-          <div style="flex: 1;">
-            <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">MirrorHealth</h3>
-            <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 12px;">Analyzes your Apple Health data using local AI (Ollama). Zero data leaves your device — ever.</p>
-            <p style="font-size: 13px; color: #3F3F46; line-height: 1.75; margin-bottom: 20px;">Apple Healthのデータは個人のhealth情報の中でも特に繊細です。どこにも送信せず、自分のマシンの中だけで分析が完結する仕組みにこだわりました。</p>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local AI</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">Ollama</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">Apple Health</span>
-            </div>
-          </div>
-          <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
-            Visit MirrorHealth
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-          </div>
-        </a>
-
-        <!-- ── Daily Pulse ── -->
-        <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="tool-card">
-          <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
-          <svg style="position: absolute; bottom: 28px; right: 36px; opacity: 0.065; pointer-events: none;" width="210" height="96" viewBox="0 0 210 96" fill="none">
-            <line x1="0" y1="8" x2="200" y2="8" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-            <line x1="0" y1="24" x2="162" y2="24" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-            <line x1="0" y1="40" x2="185" y2="40" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-            <line x1="0" y1="56" x2="145" y2="56" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-            <line x1="0" y1="72" x2="172" y2="72" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-            <line x1="0" y1="88" x2="130" y2="88" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
-          </svg>
-
-          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
-            <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
-                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                <path d="M7 9h10M7 13h6"></path>
-                <path d="M14 16.5l1.2-2 1.5 3 1.3-2H20" stroke-width="1.2"></path>
-              </svg>
-            </div>
-            <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">03</span>
-          </div>
-          <div style="flex: 1;">
-            <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">Daily Pulse</h3>
-            <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 12px;">News summarization for Mac. Get a clear picture of the day's headlines — without the noise or the tracking.</p>
-            <p style="font-size: 13px; color: #3F3F46; line-height: 1.75; margin-bottom: 20px;">ニュースアプリを開くたびに、知らないうちに行動履歴が記録されていく感覚に疲れました。トラッキングなしで、今日の見出しだけを素早く把握できるツールが欲しかったのです。</p>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">news</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">summarization</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">macOS</span>
-            </div>
-          </div>
-          <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
-            Visit Daily Pulse
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-          </div>
-        </a>
-
-        <!-- ── AgentWatch ── -->
-        <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="tool-card">
-          <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
-          <svg style="position: absolute; bottom: 20px; right: 28px; opacity: 0.07; pointer-events: none;" width="210" height="100" viewBox="0 0 210 100" fill="none">
-            <line x1="0" y1="90" x2="210" y2="90" stroke="#3B82F6" stroke-width="0.9"></line>
-            <line x1="0" y1="68" x2="210" y2="68" stroke="#3B82F6" stroke-width="0.9"></line>
-            <line x1="0" y1="46" x2="210" y2="46" stroke="#3B82F6" stroke-width="0.9"></line>
-            <line x1="0" y1="24" x2="210" y2="24" stroke="#3B82F6" stroke-width="0.9"></line>
-            <polyline points="10,82 45,70 80,56 115,60 150,36 185,18 210,8" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></polyline>
-            <circle cx="45" cy="70" r="3" fill="#3B82F6"></circle>
-            <circle cx="80" cy="56" r="3" fill="#3B82F6"></circle>
-            <circle cx="115" cy="60" r="3" fill="#3B82F6"></circle>
-            <circle cx="150" cy="36" r="3" fill="#3B82F6"></circle>
-            <circle cx="185" cy="18" r="3" fill="#3B82F6"></circle>
-          </svg>
-
-          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
-            <div style="width: 68px; height: 68px; background: rgba(59,130,246,0.09); border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(59,130,246,0.04);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
-                <rect x="2" y="4" width="20" height="14" rx="2"></rect>
-                <path d="M9 22h6M12 18v4"></path>
-                <path d="M6 14l3.5-3.5 2.5 2 4-5"></path>
-                <circle cx="17.5" cy="7.5" r="1" fill="#3B82F6" stroke="none"></circle>
-              </svg>
-            </div>
-            <span style="font-size: 11px; color: #3B82F6; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); border-radius: 100px; padding: 4px 11px;">04</span>
-          </div>
-          <div style="flex: 1;">
-            <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">AgentWatch</h3>
-            <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 12px;">Real-time CLI dashboard for AI agent cost and behavior monitoring. Full observability, zero cloud.</p>
-            <p style="font-size: 13px; color: #3F3F46; line-height: 1.75; margin-bottom: 20px;">AIエージェントを使うようになって、「今このエージェントは何をしていて、いくらかかっているのか」が見えないことに不安を感じるようになりました。可視性を取り戻すために作ったツールです。</p>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">CLI</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">real-time</span>
-              <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; background: #18181B; border: 1px solid #27272A; border-radius: 4px; padding: 3px 8px;">local</span>
-            </div>
-          </div>
-          <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
-            Visit AgentWatch
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── TIER 2: BROWSER UTILITIES ── -->
-  <section id="browser-tools" style="padding: 0 24px 100px;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-
-      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
-        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Browser Utilities</h2>
-        <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">instant-use · no install · in-browser</span>
-      </div>
-
-      <div class="tools-grid-browser" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px;">
-
-        <!-- Loan Calculator -->
-        <a href="https://CHUNK-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="util-item">
-          <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
-              <rect x="3" y="2" width="14" height="16" rx="2"></rect>
-              <path d="M7 7h6M7 10h4M7 13h2"></path>
-              <path d="M13 11v4M11 13h4" stroke-width="1.6"></path>
-            </svg>
-          </div>
-          <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Loan Calculator</div>
-            <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Calculate loan payments instantly in your browser</div>
-          </div>
-          <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-        </a>
-
-        <!-- BMI Calculator -->
-        <a href="https://CHUNK-jp.github.io/bmi-calculator/" target="_blank" rel="noopener" class="util-item">
-          <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
-              <circle cx="10" cy="5" r="2.5"></circle>
-              <path d="M6 18v-5a4 4 0 018 0v5"></path>
-              <path d="M4 18h12"></path>
-            </svg>
-          </div>
-          <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">BMI Calculator</div>
-            <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Quick body mass index calculation, no data stored</div>
-          </div>
-          <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-        </a>
-
-        <!-- Text Encryption Tool -->
-        <a href="https://CHUNK-jp.github.io/encryption-tool/" target="_blank" rel="noopener" class="util-item">
-          <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
-              <rect x="5" y="9" width="10" height="8" rx="1.5"></rect>
-              <path d="M7 9V7a3 3 0 016 0v2"></path>
-              <circle cx="10" cy="13.5" r="1" fill="#3B82F6" stroke="none"></circle>
-            </svg>
-          </div>
-          <div style="flex: 1; min-width: 0;">
-            <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Text Encryption Tool</div>
-            <div style="font-size: 12px; color: #52525B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Encrypt and decrypt text directly in your browser</div>
-          </div>
-          <svg viewBox="0 0 12 12" fill="none" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0; opacity: 0.6;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
-        </a>
-
-      </div>
-
-      <p style="margin-top: 16px; font-size: 12px; color: #3F3F46; font-family: 'JetBrains Mono', monospace;">All browser utilities run entirely client-side — no server, no tracking, no data sent anywhere.</p>
-    </div>
-  </section>
-
-  <!-- ── PHILOSOPHY ── -->
-  <section id="philosophy" style="padding: 0 24px 100px;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-      <div style="background: #0E0E10; border: 1px solid #18181B; border-radius: 18px; overflow: hidden; position: relative;">
-        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 56px; background: linear-gradient(to bottom, rgba(59,130,246,0.5), transparent);"></div>
-        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at 50% 0%, rgba(59,130,246,0.045) 0%, transparent 70%); pointer-events: none;"></div>
-
-        <div class="phil-pad" style="position: relative; padding: 72px 64px 64px; text-align: center;">
-          <div style="display: inline-block; font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Philosophy</div>
-          <h2 style="font-size: 36px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; max-width: 620px; margin: 0 auto 18px; text-wrap: balance;">Software should work for you.<br>Not harvest from you.</h2>
-          <p style="font-size: 15px; color: #71717A; max-width: 500px; margin: 0 auto 56px; line-height: 1.75;">Whether it's a full Mac app or a lightweight browser tool — every piece of software here runs locally, stores nothing remotely, and requires no account.</p>
-
-          <div class="phil-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #27272A; border-radius: 12px; overflow: hidden; text-align: left;">
-
-            <div class="phil-item">
-              <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
-                <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                  <path d="M9 2L2 5.5v4.5c0 4.1 3.3 7.9 8 9 4.7-1.1 8-4.9 8-9V5.5L9 2Z"></path>
-                </svg>
-              </div>
-              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">Local by design</h4>
-              <p style="font-size: 13px; color: #71717A; line-height: 1.7;">Every computation runs on your hardware. No network requests, no cloud sync, no backend.</p>
-              <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; margin-top: 8px;">クラウドが便利なのは知っています。でも便利さと引き換えに、あなたのデータが学習データになったり、広告のターゲティングに使われたり、ある日突然サービス終了で消えたりするリスクを受け入れたくありませんでした。</p>
-            </div>
-
-            <div class="phil-item">
-              <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
-                <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                  <polyline points="16 18 22 12 16 6" transform="scale(0.65) translate(2,2)"></polyline>
-                  <polyline points="8 6 2 12 8 18" transform="scale(0.65) translate(2,2)"></polyline>
-                </svg>
-              </div>
-              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">Open source</h4>
-              <p style="font-size: 13px; color: #71717A; line-height: 1.7;">Every line of code is public. Read and verify the privacy guarantees yourself.</p>
-              <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; margin-top: 8px;">コードはすべてGitHubで公開しています。「何をしているか」が見えないツールを使い続けることへの不安が出発点でした。信頼はブラックボックスからは生まれません。</p>
-            </div>
-
-            <div class="phil-item">
-              <div style="width: 36px; height: 36px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
-                <svg viewBox="0 0 18 18" fill="none" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                  <rect x="4" y="7" width="10" height="9" rx="1.5"></rect>
-                  <path d="M6 7V5.5a3 3 0 016 0V7"></path>
-                </svg>
-              </div>
-              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em;">No accounts, ever</h4>
-              <p style="font-size: 13px; color: #71717A; line-height: 1.7;">No email, no sign-up, no subscription. Download, open, use. Software the way it used to be.</p>
-              <p style="font-size: 12px; color: #3F3F46; line-height: 1.75; margin-top: 8px;">アカウント登録はデータ収集の入口になります。メールアドレスを渡した瞬間から、あなたはユーザーではなく製品になるかもしれない。だから、何も預けなくて使えるツールにこだわりました。</p>
-            </div>
-
-          </div>
+      <div>
+        <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Mac Tools</div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="footer-link">Attic</a>
+          <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="footer-link">MirrorHealth</a>
+          <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="footer-link">Daily Pulse</a>
+          <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="footer-link">AgentWatch</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── WHO THIS IS FOR ── -->
-  <section id="who-this-is-for" style="padding: 0 24px 100px;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
-        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">こんな人のために作っています</h2>
-        <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">for whom</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px;">
-        <div style="background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; font-size: 14px; color: #71717A; line-height: 1.7;">自分のデータがどこに送られているか把握していたい人</div>
-        <div style="background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; font-size: 14px; color: #71717A; line-height: 1.7;">サブスクリプション疲れを感じている人</div>
-        <div style="background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; font-size: 14px; color: #71717A; line-height: 1.7;">AIツールを使いながらも、プライバシーを諦めたくない人</div>
-        <div style="background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px; padding: 20px 24px; font-size: 14px; color: #71717A; line-height: 1.7;">シンプルに「自分のMacの中で完結する」ことに価値を感じる人</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-
-      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
-
-        <div>
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-            <div style="width: 30px; height: 30px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
-              <svg viewBox="0 0 16 16" width="12" height="12" fill="#3B82F6">
-                <rect x="1" y="1" width="6" height="6" rx="1"></rect>
-                <rect x="9" y="1" width="6" height="6" rx="1"></rect>
-                <rect x="1" y="9" width="6" height="6" rx="1"></rect>
-                <rect x="9" y="9" width="6" height="6" rx="1"></rect>
-              </svg>
-            </div>
-            <span style="font-size: 14px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">chunk-jp</span>
-          </div>
-          <p style="font-size: 13px; color: #52525B; max-width: 280px; line-height: 1.7; margin-bottom: 18px;">Privacy-first Mac tools and browser utilities. All local. All free. All open source.</p>
-          <a href="https://github.com/CHUNK-jp" target="_blank" rel="noopener" class="footer-gh" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A; text-decoration: none; background: #111113; border: 1px solid #27272A; border-radius: 7px; padding: 7px 14px;">
-            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-            github.com/CHUNK-jp
-          </a>
+      <div>
+        <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Browser Utilities</div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <a href="https://chunk-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="footer-link">Loan Calculator</a>
+          <a href="https://chunk-jp.github.io/bmi-calculator/" target="_blank" rel="noopener" class="footer-link">BMI Calculator</a>
+          <a href="https://chunk-jp.github.io/encryption-tool/" target="_blank" rel="noopener" class="footer-link">Text Encryption Tool</a>
         </div>
-
-        <div>
-          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Mac Tools</div>
-          <div style="display: flex; flex-direction: column; gap: 11px;">
-            <a class="footer-link" href="https://CHUNK-jp.github.io/attic/" target="_blank" rel="noopener">Attic</a>
-            <a class="footer-link" href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener">MirrorHealth</a>
-            <a class="footer-link" href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener">Daily Pulse</a>
-            <a class="footer-link" href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener">AgentWatch</a>
-          </div>
-        </div>
-
-        <div>
-          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Browser Utilities</div>
-          <div style="display: flex; flex-direction: column; gap: 11px;">
-            <a class="footer-link" href="https://CHUNK-jp.github.io/loan-calculator/" target="_blank" rel="noopener">Loan Calculator</a>
-            <a class="footer-link" href="https://CHUNK-jp.github.io/bmi-calculator/" target="_blank" rel="noopener">BMI Calculator</a>
-            <a class="footer-link" href="https://CHUNK-jp.github.io/encryption-tool/" target="_blank" rel="noopener">Text Encryption Tool</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="border-top: 1px solid #18181B; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-          <span style="font-size: 13px; color: #3F3F46;">© 2026 CHUNK-jp · All tools free and open source.</span>
-          <a class="footer-link" href="privacy.html">Privacy</a>
-          <a class="footer-link" href="contact.html">Contact</a>
-        </div>
-        <div style="font-size: 12px; color: #27272A; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em;">privacy-first · local-first · macOS + web</div>
       </div>
 
     </div>
-  </footer>
 
-</div>
+    <div style="border-top: 1px solid #18181B; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <div style="font-size: 13px; color: #3F3F46;">© 2026 CHUNK-jp · All tools free and open source.</div>
+      <div style="font-size: 12px; color: #27272A; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em;">privacy-first · local-first · macOS + web</div>
+    </div>
+
+  </div>
+</footer>
 
 </body>
 </html>
