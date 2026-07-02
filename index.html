@@ -47,14 +47,25 @@
     .scroll-arrow { display: inline-flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity 0.15s; }
     .scroll-arrow:hover { opacity: 0.7; }
 
-    /* ── MAC TOOL CARDS ── */
-    .mac-card {
+    /* ── CRAFT TOOL CARDS ── */
+    .craft-card {
       display: flex; flex-direction: column;
       background: #111113; border: 1px solid #1E1E23; border-radius: 16px;
       padding: 36px 40px; color: inherit; position: relative; overflow: hidden;
       transition: border-color 0.15s, background 0.15s;
     }
-    .mac-card:hover { border-color: rgba(59,130,246,0.32); background: #121214; }
+    .craft-card:hover { border-color: rgba(59,130,246,0.32); background: #121214; }
+
+    /* ── WONDER TOOL CARDS ── */
+    .wonder-card {
+      display: flex; flex-direction: column;
+      background: #110E04; border: 1px solid #2A2010; border-radius: 16px;
+      padding: 36px 40px; color: inherit; position: relative; overflow: hidden;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .wonder-card:hover { border-color: rgba(245,158,11,0.35); background: #141006; }
+    .wonder-btn { transition: opacity 0.15s; }
+    .wonder-btn:hover { opacity: 0.88; }
 
     /* ── BROWSER UTILITY CARDS ── */
     .util-card {
@@ -81,6 +92,8 @@
     /* ── FOOTER LINKS ── */
     .footer-link { font-size: 13px; color: #71717A; transition: color 0.15s; }
     .footer-link:hover { color: #FAFAFA; }
+    .footer-link-wonder { font-size: 13px; color: #71717A; transition: color 0.15s; }
+    .footer-link-wonder:hover { color: #FBBF24; }
 
     .footer-gh {
       display: inline-flex; align-items: center; gap: 8px;
@@ -93,7 +106,8 @@
 
     @media (max-width: 640px) {
       .hero-h1 { font-size: 48px !important; }
-      .mac-grid { grid-template-columns: 1fr !important; }
+      .craft-grid { grid-template-columns: 1fr !important; }
+      .wonder-grid { grid-template-columns: 1fr !important; }
       .util-grid { grid-template-columns: 1fr !important; }
       .phi-grid { grid-template-columns: 1fr !important; }
       .who-grid { grid-template-columns: 1fr !important; }
@@ -120,7 +134,8 @@
         <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
       </div>
       <div class="nav-links-center" style="display: flex; align-items: center; gap: 4px; flex: 1;">
-        <a href="#mac-tools" class="nav-link">Mac Tools</a>
+        <a href="#craft" class="nav-link">CHUNK-jp Craft</a>
+        <a href="#wonder" class="nav-link">CHUNK-jp Wonder</a>
         <a href="#browser-tools" class="nav-link">Browser Utilities</a>
         <a href="#philosophy" class="nav-link">Philosophy</a>
         <a href="#who-for" class="nav-link">Who it's for</a>
@@ -172,7 +187,7 @@
     </div>
 
     <div style="margin-top: 56px;">
-      <a href="#mac-tools" class="scroll-arrow">
+      <a href="#craft" class="scroll-arrow">
         <span style="font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 10px; letter-spacing: 0.12em; color: #3F3F46;">Explore the collection</span>
         <svg viewBox="0 0 16 16" fill="none" stroke="#3F3F46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M8 3v9M4.5 8.5l3.5 3.5 3.5-3.5"></path></svg>
       </a>
@@ -180,19 +195,22 @@
   </div>
 </section>
 
-<!-- ── TIER 1: MAC TOOLS ── -->
-<section id="mac-tools" style="padding: 64px 24px 80px;">
+<!-- ── TIER 1: CHUNK-JP CRAFT ── -->
+<section id="craft" style="padding: 64px 24px 80px;">
   <div style="max-width: 1100px; margin: 0 auto;">
 
-    <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
-      <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">Mac Tools</h2>
-      <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">local-first · macOS</span>
+    <div style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
+      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px;">
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">CHUNK-jp Craft</h2>
+        <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">local-first · macOS</span>
+      </div>
+      <p style="font-size: 13px; color: #52525B; margin: 0;">Privacy-first tools for developers and power users.</p>
     </div>
 
-    <div class="mac-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
+    <div class="craft-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
 
       <!-- ── Attic ── -->
-      <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="mac-card">
+      <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="craft-card">
         <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
         <svg style="position: absolute; bottom: -24px; right: -24px; opacity: 0.055; pointer-events: none;" width="260" height="260" viewBox="0 0 260 260" fill="none">
           <circle cx="220" cy="220" r="44" stroke="#3B82F6" stroke-width="1.3"></circle>
@@ -229,7 +247,7 @@
       </a>
 
       <!-- ── MirrorHealth ── -->
-      <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="mac-card">
+      <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="craft-card">
         <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
         <svg style="position: absolute; bottom: 24px; left: 0; opacity: 0.075; pointer-events: none;" width="100%" height="60" viewBox="0 0 520 60" preserveAspectRatio="none" fill="none">
           <path d="M0 30 L110 30 L128 30 L142 6 L157 55 L172 10 L186 30 L260 30 L380 30 L480 30 L520 30" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -261,7 +279,7 @@
       </a>
 
       <!-- ── Daily Pulse ── -->
-      <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="mac-card">
+      <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="craft-card">
         <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
         <svg style="position: absolute; bottom: 28px; right: 36px; opacity: 0.065; pointer-events: none;" width="210" height="96" viewBox="0 0 210 96" fill="none">
           <line x1="0" y1="8" x2="200" y2="8" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"></line>
@@ -299,7 +317,7 @@
       </a>
 
       <!-- ── AgentWatch ── -->
-      <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="mac-card">
+      <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="craft-card">
         <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(59,130,246,0.05), transparent 60%); pointer-events: none;"></div>
         <svg style="position: absolute; bottom: 20px; right: 28px; opacity: 0.07; pointer-events: none;" width="210" height="100" viewBox="0 0 210 100" fill="none">
           <line x1="0" y1="90" x2="210" y2="90" stroke="#3B82F6" stroke-width="0.9"></line>
@@ -338,6 +356,68 @@
         <div style="display: inline-flex; align-items: center; gap: 7px; background: #3B82F6; color: #fff; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
           Visit AgentWatch
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TIER 1.5: CHUNK-JP WONDER ── -->
+<section id="wonder" style="padding: 0 24px 80px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #1E1A0E;">
+      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px;">
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #FBBF24;">CHUNK-jp Wonder</h2>
+        <span style="font-size: 12px; color: #78716C; font-family: 'JetBrains Mono', monospace;">local-first · for everyone</span>
+      </div>
+      <p style="font-size: 13px; color: #78716C; margin: 0;">Playful, imaginative tools for a broader audience. Same privacy values, a warmer feeling.</p>
+    </div>
+
+    <div class="wonder-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px;">
+
+      <!-- ── PulseJournal ── -->
+      <a href="https://chunk-jp.github.io/pulsejournal/" target="_blank" rel="noopener" class="wonder-card">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(245,158,11,0.07), transparent 60%); pointer-events: none;"></div>
+        <svg style="position: absolute; bottom: -8px; right: -8px; opacity: 0.07; pointer-events: none;" width="230" height="190" viewBox="0 0 230 190" fill="none">
+          <line x1="115" y1="20" x2="115" y2="190" stroke="#F59E0B" stroke-width="1.8"></line>
+          <path d="M20 60 Q80 56 115 58" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M20 80 Q80 76 115 78" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M20 100 Q80 96 115 98" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M20 120 Q80 116 115 118" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M20 140 Q80 136 115 138" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M115 58 Q150 56 210 60" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M115 78 Q150 76 210 80" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M115 98 Q150 96 210 100" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M115 118 Q150 116 210 120" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+          <path d="M115 138 Q150 136 210 140" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"></path>
+        </svg>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px;">
+          <div style="width: 68px; height: 68px; background: rgba(245,158,11,0.09); border: 1px solid rgba(245,158,11,0.22); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 5px rgba(245,158,11,0.04);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+              <path d="M8 7h8M8 11h6M8 15h4"></path>
+            </svg>
+          </div>
+          <span style="font-size: 11px; color: #F59E0B; font-weight: 600; font-family: 'JetBrains Mono', monospace; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.18); border-radius: 100px; padding: 4px 11px;">Wonder</span>
+        </div>
+
+        <div style="flex: 1;">
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px;">PulseJournal</h3>
+          <p style="font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 14px;">Turn your Apple Health data into a daily story. Not graphs — a narrative. Powered by local AI.</p>
+          <p style="font-size: 12px; color: #3F3B2E; line-height: 1.8; font-style: italic; border-top: 1px solid #2A2010; padding-top: 14px; margin-bottom: 20px;">I had years of health data sitting in the Health app. I wanted to read it like a book, not a spreadsheet.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px;">
+            <span style="font-size: 11px; color: #78716C; font-family: 'JetBrains Mono', monospace; background: #1C1608; border: 1px solid #2A2010; border-radius: 4px; padding: 3px 8px;">Apple Health</span>
+            <span style="font-size: 11px; color: #78716C; font-family: 'JetBrains Mono', monospace; background: #1C1608; border: 1px solid #2A2010; border-radius: 4px; padding: 3px 8px;">local AI</span>
+            <span style="font-size: 11px; color: #78716C; font-family: 'JetBrains Mono', monospace; background: #1C1608; border: 1px solid #2A2010; border-radius: 4px; padding: 3px 8px;">diary</span>
+          </div>
+        </div>
+
+        <div class="wonder-btn" style="display: inline-flex; align-items: center; gap: 7px; background: #F59E0B; color: #0C0900; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 7px; align-self: flex-start;">
+          Visit PulseJournal →
         </div>
       </a>
 
@@ -509,7 +589,7 @@
 <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
   <div style="max-width: 1100px; margin: 0 auto;">
 
-    <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+    <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px;">
 
       <div>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
@@ -531,12 +611,19 @@
       </div>
 
       <div>
-        <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Mac Tools</div>
+        <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">CHUNK-jp Craft</div>
         <div style="display: flex; flex-direction: column; gap: 11px;">
           <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="footer-link">Attic</a>
           <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="footer-link">MirrorHealth</a>
           <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="footer-link">Daily Pulse</a>
           <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="footer-link">AgentWatch</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; font-weight: 600; color: #78593A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">CHUNK-jp Wonder</div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <a href="https://chunk-jp.github.io/pulsejournal/" target="_blank" rel="noopener" class="footer-link-wonder">PulseJournal</a>
         </div>
       </div>
 
