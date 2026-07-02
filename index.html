@@ -105,13 +105,14 @@
     .footer-gh:hover { color: #FAFAFA; border-color: #3F3F46; }
 
     @media (max-width: 640px) {
+      body { overflow-x: hidden; }
       .hero-h1 { font-size: 48px !important; }
-      .craft-grid { grid-template-columns: 1fr !important; }
-      .wonder-grid { grid-template-columns: 1fr !important; }
-      .util-grid { grid-template-columns: 1fr !important; }
-      .phi-grid { grid-template-columns: 1fr !important; }
-      .who-grid { grid-template-columns: 1fr !important; }
-      .footer-grid { grid-template-columns: 1fr !important; }
+      .craft-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .wonder-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .util-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .phi-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .who-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .footer-grid { grid-template-columns: minmax(0, 1fr) !important; }
       .nav-links-center { display: none !important; }
     }
   </style>
