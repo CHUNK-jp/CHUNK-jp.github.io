@@ -89,6 +89,26 @@
     }
     .who-card:hover { border-color: rgba(59,130,246,0.2); background: #0F0F12; }
 
+    /* ── DEVLOG ── */
+    .devlog-list { display: flex; flex-direction: column; gap: 10px; }
+    .devlog-item {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      background: #0D0D10; border: 1px solid #1C1C1F; border-radius: 12px;
+      padding: 16px 20px; color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .devlog-item:hover { border-color: rgba(59,130,246,0.22); background: #0F0F12; }
+    .devlog-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex-shrink: 0; min-width: 128px; }
+    .devlog-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #52525B; }
+    .devlog-badge {
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+      border-radius: 100px; padding: 3px 10px; white-space: nowrap;
+    }
+    .devlog-badge-craft { color: #3B82F6; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); }
+    .devlog-badge-wonder { color: #F59E0B; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.18); }
+    .devlog-badge-neutral { color: #A1A1AA; background: #18181B; border: 1px solid #27272A; }
+    .devlog-summary { font-size: 14px; color: #A1A1AA; line-height: 1.7; margin: 0; flex: 1; min-width: 200px; }
+
     /* ── FOOTER LINKS ── */
     .footer-link { font-size: 13px; color: #71717A; transition: color 0.15s; }
     .footer-link:hover { color: #FAFAFA; }
@@ -180,6 +200,8 @@
       .who-grid { grid-template-columns: minmax(0, 1fr) !important; }
       .footer-grid { grid-template-columns: minmax(0, 1fr) !important; }
       .nav-links-center { display: none !important; }
+      .devlog-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .devlog-meta { flex-direction: row; align-items: center; min-width: 0; }
     }
   </style>
 </head>
@@ -206,6 +228,7 @@
         <a href="#browser-tools" class="nav-link">Browser Utilities</a>
         <a href="#philosophy" class="nav-link">Philosophy</a>
         <a href="#who-for" class="nav-link">Who it's for</a>
+        <a href="#devlog" class="nav-link">DevLog</a>
       </div>
       <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="btn-gh">
         <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -699,6 +722,23 @@
   </div>
 </section>
 
+<!-- ── DEVLOG ── -->
+<section id="devlog" style="padding: 0 24px 100px; display: none;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid #18181B;">
+      <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px;">
+        <h2 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">DevLog</h2>
+        <span style="font-size: 12px; color: #52525B; font-family: 'JetBrains Mono', monospace;">what's being built · updated daily</span>
+      </div>
+      <p style="font-size: 13px; color: #52525B; margin: 0;">Development notes from across all CHUNK-jp tools — summarized automatically.</p>
+    </div>
+
+    <div id="devlog-list" class="devlog-list"></div>
+
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
   <div style="max-width: 1100px; margin: 0 auto;">
@@ -887,6 +927,79 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(resize, 150);
   });
+})();
+</script>
+
+<script>
+(function() {
+  var CRAFT_REPOS = ['attic', 'mirrorhealth', 'daily-pulse', 'agent-watch'];
+  var WONDER_REPOS = ['pulsejournal', 'neiro'];
+
+  function badgeClassFor(repo) {
+    if (CRAFT_REPOS.indexOf(repo) !== -1) return 'devlog-badge-craft';
+    if (WONDER_REPOS.indexOf(repo) !== -1) return 'devlog-badge-wonder';
+    return 'devlog-badge-neutral';
+  }
+
+  function renderEntries(entries) {
+    var section = document.getElementById('devlog');
+    var list = document.getElementById('devlog-list');
+    if (!section || !list) return;
+
+    entries.slice(0, 6).forEach(function(entry) {
+      if (!entry || typeof entry !== 'object') return;
+      var date = typeof entry.date === 'string' ? entry.date : '';
+      var repo = typeof entry.repo === 'string' ? entry.repo : '';
+      var summary = typeof entry.summary === 'string' ? entry.summary : '';
+      var commitUrl = typeof entry.commitUrl === 'string' ? entry.commitUrl : '';
+      if (!date || !repo || !summary || !commitUrl) return;
+      if (commitUrl.indexOf('https://github.com/') !== 0) return;
+
+      var item = document.createElement('a');
+      item.className = 'devlog-item';
+      item.href = commitUrl;
+      item.target = '_blank';
+      item.rel = 'noopener';
+
+      var meta = document.createElement('div');
+      meta.className = 'devlog-meta';
+
+      var dateEl = document.createElement('span');
+      dateEl.className = 'devlog-date';
+      dateEl.textContent = date;
+
+      var badgeEl = document.createElement('span');
+      badgeEl.className = 'devlog-badge ' + badgeClassFor(repo);
+      badgeEl.textContent = repo;
+
+      meta.appendChild(dateEl);
+      meta.appendChild(badgeEl);
+
+      var summaryEl = document.createElement('p');
+      summaryEl.className = 'devlog-summary';
+      summaryEl.textContent = summary;
+
+      item.appendChild(meta);
+      item.appendChild(summaryEl);
+      list.appendChild(item);
+    });
+
+    if (list.children.length > 0) {
+      section.style.display = '';
+    }
+  }
+
+  fetch('devlog.json')
+    .then(function(res) {
+      if (!res.ok) return null;
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data) return;
+      if (!data.entries || !Array.isArray(data.entries) || data.entries.length === 0) return;
+      renderEntries(data.entries);
+    })
+    .catch(function() {});
 })();
 </script>
 
