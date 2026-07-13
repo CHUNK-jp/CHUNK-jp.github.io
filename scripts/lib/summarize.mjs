@@ -1,16 +1,16 @@
 // summarize.mjs
 //
 // Calls the Claude Messages API (raw HTTP — no SDK dependency) to turn a
-// commit message + change summary into a short Japanese DevLog blurb.
+// commit message + change summary into a short English DevLog blurb.
 
-const SYSTEM_PROMPT = `あなたは「CHUNK-jp」の開発ログ（DevLog）を書く編集アシスタントです。CHUNK-jpは、プライバシー重視・ローカルファーストのMacツールとブラウザユーティリティを個人で開発しているインディー開発者ブランドで、開発者向けの「Craft」ラインと、幅広い層向けの「Wonder」ラインがあります。コミット情報をもとに、ポータルサイトに掲載する短い開発ログを日本語で書きます。
+const SYSTEM_PROMPT = `You write the DevLog for CHUNK-jp, an independent developer brand building privacy-first, local-first Mac tools and browser utilities. It has a developer-focused "Craft" line and a "Wonder" line for a broader audience. Based on the commit information, write a short development log entry in English for the portal site.
 
-ルール:
-- 必ず日本語で書く。1〜2文、全体で90文字以内
-- 「〜を追加しました」「〜を改善しました」のような、控えめで誠実な開発ログの文体
-- 技術用語は必要な範囲でそのまま使ってよい
-- 誇張やマーケティング的な表現は使わない
-- 出力は要約文のみ。前置き・引用符・箇条書きは不要`;
+Rules:
+- Always write in English. 1-2 sentences, 160 characters or less in total
+- Modest, sincere dev-log tone — plain statements like "Added ..." or "Improved ...", the voice of a solo developer noting progress
+- Technical terms may be used where needed
+- No hype or marketing language
+- Output only the summary itself. No preamble, quotes, or bullet points`;
 
 /**
  * Summarize a single commit into a short Japanese DevLog entry via the
@@ -36,7 +36,7 @@ export async function summarizeCommit({
   fetchImpl = fetch,
   model = 'claude-haiku-4-5-20251001',
 }) {
-  const userMessage = `リポジトリ: ${repo}（${brand}）\nコミットメッセージ:\n${message}\n\n変更ファイルの概要:\n${changes}`;
+  const userMessage = `Repository: ${repo} (${brand})\nCommit message:\n${message}\n\nChanged files:\n${changes}`;
 
   const res = await fetchImpl('https://api.anthropic.com/v1/messages', {
     method: 'POST',
