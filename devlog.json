@@ -1,4 +1,184 @@
 {
-  "entries": [],
-  "state": {}
+  "entries": [
+    {
+      "date": "2026-07-12",
+      "repo": "neiro",
+      "summary": "ランディングページのナビゲーションリンクをCHUNK-jpポータルへ正しく指すように修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/18d0810c845f666afab28d8c0a87d876dbd59154"
+    },
+    {
+      "date": "2026-07-12",
+      "repo": "chunk-jp.github.io",
+      "summary": "サイトマップを更新し、新たに追加された6つのツール（attic、mirrorhealth、daily-pulse、agent-watch、pulsejournal、neiro）のURLを追加しました。全エントリの更新日時も最新のコミット日に合わせて更新しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/195f52f3e1be81957922ea4c03a96fcdac7460d8"
+    },
+    {
+      "date": "2026-07-10",
+      "repo": "neiro",
+      "summary": "MIX Studioの保存済みミックスをOgg/Opus形式で圧縮し、ストレージ使用量を約15分の1に削減しました。オフライン対応のWASM encoderを使用し、互換性のないデバイスではWAVで自動フォールバックします。",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/fdf395ee48dc0362d45cfc67bf25d3239e512159"
+    },
+    {
+      "date": "2026-07-10",
+      "repo": "neiro",
+      "summary": "音声録音フォーマットをWebM/Opusに統一し、各投稿の実際のコンテナ形式をmimeTypeで記録するようにしました。レガシーWAV形式との互換性を保ちながら、複数フォーマット混在時の再生テストも追加しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/8dfaa6b55f5ad7c2410b996fa3a7df6f657ab538"
+    },
+    {
+      "date": "2026-07-06",
+      "repo": "pulsejournal",
+      "summary": "PulseJournalのデプロイメント環境を修正し、ページの自動再構築トリガーを設定しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/f92f860cb7810fe351d60583f68c10a95462cac7"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "pulsejournal",
+      "summary": "GitHub Pagesのビルド設定を修正し、ドキュメントが意図した形式で配信されるようにしました。",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/c3262a00add3b456848a489ea4d51c0c86aefd35"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "pulsejournal",
+      "summary": "PulseJournalのREADMEに使用方法とサンプル出力、トラブルシューティングを追加しました。新規ユーザーがOllamaを実行する前に出力結果を確認できるようになります。",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/c4926c437d4ba29347711441dc8177e2f1076dbd"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "agent-watch",
+      "summary": "GitHub Pagesでのドキュメント配信時にJekyllの自動処理をスキップするよう設定を追加しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/d8dd6f726aff1a0dad07bf5b9eeb0946eb233ccd"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "daily-pulse",
+      "summary": "GitHub Pagesのドキュメント配信時にJekyllの自動処理をスキップするよう設定を改善しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/42d2704ab847625f1e92a15f6e191814f0294585"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "mirrorhealth",
+      "summary": "GitHub Pagesのドキュメント配信で、Jekyllの自動処理を無効化するための設定ファイルを追加しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/692ebf129956f901e0f78752fff37eca99bb04ef"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "attic",
+      "summary": "GitHub Pagesのドキュメント配信でJekyllの自動処理を無効化し、ビルドエラーを解決しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/fa191a1e72af0070e46c6b4304dd7ed9b46d7fd1"
+    },
+    {
+      "date": "2026-06-30",
+      "repo": "mirrorhealth",
+      "summary": "MirrorHealth のランディングページにダッシュボードプレビューセクションを追加しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/829c294cf18101b62c36853c800b7e870e8a6eb9"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "agent-watch",
+      "summary": "agent-watchのドキュメントに「Why I Built This」と「Quick Start」セクションを追加し、アンカーナビゲーション時の表示を改善しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/a4d104b778b237dc3c88faa8baf1eeec2555e7a8"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "daily-pulse",
+      "summary": "モバイル表示時のストーリー要素の重なりを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/71255992a1a08671cb322879743b09bf67f17e70"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "daily-pulse",
+      "summary": "daily-pulseのドキュメントページに「Why I Built This」セクションと4ステップガイドセクションを追加しました。レスポンシブ対応も実装しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/829209c3238a7a857d5a38284689352a0323f53b"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "mirrorhealth",
+      "summary": "mirrorhealth（Craft）のUIを英語に対応させました。ユーザーインターフェース全体を国際化し、より多くのユーザーにアクセスしやすくしています。",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/255bfa271671a17c5bbb902433837653a0b3b404"
+    },
+    {
+      "date": "2026-06-28",
+      "repo": "attic",
+      "summary": "ナビゲーションのロゴをCHUNK-jpポータルへのリンクに変更し、スタイルを調整しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/3891b9687139ff624b2e1ba338b7013d239bb9df"
+    },
+    {
+      "date": "2026-06-28",
+      "repo": "attic",
+      "summary": "Atticのランディングページを新デザイン仕様に合わせてリデザインしました。ダークテーマとブルーアクセント、インタラクティブな検索バー、レスポンシブレイアウトに対応しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/015a3fa68e9d7f67d0ed784b3ef31d87dbb7831d"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "AgentWatchフッターのリンクURLを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/174f60eded86204833ab51e7a6d2668833b2b7ec"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "Daily PulseのフッターリンクURLを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/33bd6a4d10793781e4eacdf442835b7faa9efd49"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "encryption-toolをChunk-jp デザインシステムでリデザインし、モバイルレスポンシブレイアウトに対応しました。ダークテーマとセキュリティグリッドの段組み最適化を実装しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/38717c7a861f12a91341c1557979e48b310abc84"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "AgentWatchのフッターリンクURLを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/830071ca9ca45fffd7b45ca69d181f45bec4c8cb"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "Daily Pulse フッターのリンクURLを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/67cd38ea6ac50c4c7b238897cf3f7aeb92fe36b5"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "BMI計算ツールをデザインシステムに統合し、ダークテーマやゲージ針アニメーション、単位切り替え機能を追加しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/8a143c719c0ff7a4663065a19867706f0879a9c7"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "AgentWatchのフッターリンクURLを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/73cbfd812c2d2d2f8a7980ad36d1b83e77adfdc8"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "Daily Pulseのフッターリンクを修正しました。",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/c7439891f0469f253c34c682d3e37b64846d1b7e"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "ローンシミュレーターをプロダクション対応のデザインにリデザインしました。ダークテーマ、レスポンシブレイアウト、リアルタイム計算、元利内訳表示などに対応しています。",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/9123a91821d8f5da5baf95a06da004daf279bac8"
+    },
+    {
+      "date": "2026-06-25",
+      "repo": "agent-watch",
+      "summary": "ヘッダーのロゴをCHUNK-jpのポータルサイトへリンクするようにしました。",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/6017d020f6f422f0a46b89e1511be34701575cdf"
+    }
+  ],
+  "state": {
+    "chunk-jp.github.io": "36806ea06169c915a301fed4ea7690e0a457d2af",
+    "attic": "fa191a1e72af0070e46c6b4304dd7ed9b46d7fd1",
+    "mirrorhealth": "692ebf129956f901e0f78752fff37eca99bb04ef",
+    "daily-pulse": "42d2704ab847625f1e92a15f6e191814f0294585",
+    "agent-watch": "d8dd6f726aff1a0dad07bf5b9eeb0946eb233ccd",
+    "pulsejournal": "f92f860cb7810fe351d60583f68c10a95462cac7",
+    "neiro": "18d0810c845f666afab28d8c0a87d876dbd59154",
+    "loan-calculator": "73cbfd812c2d2d2f8a7980ad36d1b83e77adfdc8",
+    "bmi-calculator": "830071ca9ca45fffd7b45ca69d181f45bec4c8cb",
+    "encryption-tool": "174f60eded86204833ab51e7a6d2668833b2b7ec"
+  }
 }
