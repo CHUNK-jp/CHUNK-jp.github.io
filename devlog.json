@@ -1,4 +1,184 @@
 {
-  "entries": [],
-  "state": {}
+  "entries": [
+    {
+      "date": "2026-07-13",
+      "repo": "chunk-jp.github.io",
+      "summary": "Updated DevLog generation to produce English summaries instead of Japanese, resetting entries to regenerate with the new prompt and localization.",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/615a6ea8887517b64dc00562732b3dcfcb7247df"
+    },
+    {
+      "date": "2026-07-12",
+      "repo": "neiro",
+      "summary": "Fixed navigation links in Neiro's header to properly point to the CHUNK-jp portal, aligning with the pattern used across other Wonder tools.",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/18d0810c845f666afab28d8c0a87d876dbd59154"
+    },
+    {
+      "date": "2026-07-10",
+      "repo": "neiro",
+      "summary": "Compressed MIX feed saves to Ogg/Opus (96kbps) via vendored libopus WASM encoder, reducing ~8.5MB WAV files to ~569KB while maintaining offline capability and fallback support for older browsers.",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/fdf395ee48dc0362d45cfc67bf25d3239e512159"
+    },
+    {
+      "date": "2026-07-10",
+      "repo": "neiro",
+      "summary": "Improved audio recording to prefer WebM/Opus codec with graceful fallbacks, tracking mimeType per post. Mixed-format playback now tested across solo, loop, and layered scenarios.",
+      "commitUrl": "https://github.com/CHUNK-jp/neiro/commit/8dfaa6b55f5ad7c2410b996fa3a7df6f657ab538"
+    },
+    {
+      "date": "2026-07-06",
+      "repo": "pulsejournal",
+      "summary": "Resolved deployment source configuration to enable proper Pages rebuilds for PulseJournal.",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/f92f860cb7810fe351d60583f68c10a95462cac7"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "pulsejournal",
+      "summary": "Fixed GitHub Pages deployment by adding .nojekyll to prevent Jekyll processing, allowing static assets to serve correctly.",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/c3262a00add3b456848a489ea4d51c0c86aefd35"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "pulsejournal",
+      "summary": "Updated README with usage examples, sample output, and troubleshooting guide to help new users understand what to expect from Pulse Journal before running Ollama.",
+      "commitUrl": "https://github.com/CHUNK-jp/pulsejournal/commit/c4926c437d4ba29347711441dc8177e2f1076dbd"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "agent-watch",
+      "summary": "Fixed GitHub Pages documentation deployment by adding .nojekyll to prevent Jekyll processing from breaking CSS assets.",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/d8dd6f726aff1a0dad07bf5b9eeb0946eb233ccd"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "daily-pulse",
+      "summary": "Fixed GitHub Pages deployment for daily-pulse docs by adding .nojekyll to disable Jekyll processing, allowing static assets to serve correctly.",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/42d2704ab847625f1e92a15f6e191814f0294585"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "mirrorhealth",
+      "summary": "Fixed GitHub Pages deployment by adding .nojekyll to prevent unwanted Jekyll processing of documentation assets.",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/692ebf129956f901e0f78752fff37eca99bb04ef"
+    },
+    {
+      "date": "2026-07-03",
+      "repo": "attic",
+      "summary": "Added .nojekyll file to prevent unwanted Jekyll processing on GitHub Pages, ensuring docs are served as-is.",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/fa191a1e72af0070e46c6b4304dd7ed9b46d7fd1"
+    },
+    {
+      "date": "2026-06-30",
+      "repo": "mirrorhealth",
+      "summary": "Added a dashboard preview section to the MirrorHealth landing page to showcase the app's core interface and functionality.",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/829c294cf18101b62c36853c800b7e870e8a6eb9"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "agent-watch",
+      "summary": "Added \"Why I Built This\" and \"Quick Start\" sections to docs with proper scroll anchoring; restored Python/pip instructions matching the actual tech stack.",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/a4d104b778b237dc3c88faa8baf1eeec2555e7a8"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "daily-pulse",
+      "summary": "Fixed sticky story positioning overlap on mobile devices by adjusting the breakpoint to release fixed positioning at 860px and below.",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/71255992a1a08671cb322879743b09bf67f17e70"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "daily-pulse",
+      "summary": "Added \"Why I Built This\" narrative and four-step guide sections to Daily Pulse's landing page with responsive grid layouts for smaller screens.",
+      "commitUrl": "https://github.com/CHUNK-jp/daily-pulse/commit/829209c3238a7a857d5a38284689352a0323f53b"
+    },
+    {
+      "date": "2026-06-29",
+      "repo": "mirrorhealth",
+      "summary": "Translated mirrorhealth UI from Japanese to English across layout, analysis endpoints, and component labels to better serve international users.",
+      "commitUrl": "https://github.com/CHUNK-jp/mirrorhealth/commit/255bfa271671a17c5bbb902433837653a0b3b404"
+    },
+    {
+      "date": "2026-06-28",
+      "repo": "attic",
+      "summary": "Fixed navigation logo linking to CHUNK-jp portal with proper styling to prevent default link underlines.",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/3891b9687139ff624b2e1ba338b7013d239bb9df"
+    },
+    {
+      "date": "2026-06-28",
+      "repo": "attic",
+      "summary": "Redesigned Attic's landing page with new dark theme, interactive hero search, and responsive layout across all sections.",
+      "commitUrl": "https://github.com/CHUNK-jp/attic/commit/015a3fa68e9d7f67d0ed784b3ef31d87dbb7831d"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "Fixed footer link URL in AgentWatch utility.",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/174f60eded86204833ab51e7a6d2668833b2b7ec"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "Fixed footer link URL in Daily Pulse to use correct slug format (dailypulse → daily-pulse).",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/33bd6a4d10793781e4eacdf442835b7faa9efd49"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "encryption-tool",
+      "summary": "Redesigned encryption-tool with chunk-jp dark theme and mobile responsiveness. Updated UI to match design system while adding responsive breakpoints for smaller screens.",
+      "commitUrl": "https://github.com/CHUNK-jp/encryption-tool/commit/38717c7a861f12a91341c1557979e48b310abc84"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "Fixed footer link URL in AgentWatch utility to ensure proper navigation.",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/830071ca9ca45fffd7b45ca69d181f45bec4c8cb"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "Fixed incorrect footer link URL in BMI Calculator pointing to Daily Pulse product page.",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/67cd38ea6ac50c4c7b238897cf3f7aeb92fe36b5"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "bmi-calculator",
+      "summary": "Redesigned BMI calculator with dark theme and shared design system. Added animated gauge, metric/imperial toggle, persistent storage, and responsive mobile support.",
+      "commitUrl": "https://github.com/CHUNK-jp/bmi-calculator/commit/8a143c719c0ff7a4663065a19867706f0879a9c7"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "Fixed incorrect footer link URL in AgentWatch utility.",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/73cbfd812c2d2d2f8a7980ad36d1b83e77adfdc8"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "Fixed a footer link URL in the loan calculator utility, correcting the Daily Pulse domain reference.",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/c7439891f0469f253c34c682d3e37b64846d1b7e"
+    },
+    {
+      "date": "2026-06-27",
+      "repo": "loan-calculator",
+      "summary": "Redesigned loan calculator with dark theme, responsive two-column layout, and real-time calculation. Added principal-vs-interest breakdown visualization and localStorage persistence for better UX.",
+      "commitUrl": "https://github.com/CHUNK-jp/loan-calculator/commit/9123a91821d8f5da5baf95a06da004daf279bac8"
+    },
+    {
+      "date": "2026-06-25",
+      "repo": "agent-watch",
+      "summary": "Fixed logo link in the header to point to the main site homepage.",
+      "commitUrl": "https://github.com/CHUNK-jp/agent-watch/commit/6017d020f6f422f0a46b89e1511be34701575cdf"
+    }
+  ],
+  "state": {
+    "chunk-jp.github.io": "793d17309e6ffffe365b628d78f445ab9242c62b",
+    "attic": "fa191a1e72af0070e46c6b4304dd7ed9b46d7fd1",
+    "mirrorhealth": "692ebf129956f901e0f78752fff37eca99bb04ef",
+    "daily-pulse": "42d2704ab847625f1e92a15f6e191814f0294585",
+    "agent-watch": "d8dd6f726aff1a0dad07bf5b9eeb0946eb233ccd",
+    "pulsejournal": "f92f860cb7810fe351d60583f68c10a95462cac7",
+    "neiro": "18d0810c845f666afab28d8c0a87d876dbd59154",
+    "loan-calculator": "73cbfd812c2d2d2f8a7980ad36d1b83e77adfdc8",
+    "bmi-calculator": "830071ca9ca45fffd7b45ca69d181f45bec4c8cb",
+    "encryption-tool": "174f60eded86204833ab51e7a6d2668833b2b7ec"
+  }
 }
