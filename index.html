@@ -111,6 +111,17 @@
     }
     .hero-cta:hover { border-color: var(--color-craft-2); }
 
+    /* ── HERO · HP3 cursor spotlight (hero-scoped, input-driven feedback) ── */
+    .hero-spot {
+      position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: radial-gradient(600px circle at var(--mx, 26%) var(--my, 68%),
+        color-mix(in oklch, var(--color-craft) 15%, transparent), transparent 60%);
+      transition: background 200ms var(--ease-out);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-spot { transition: none; }
+    }
+
     /* ── HERO MOTIF · dots stay inside the boundary (motion primitive 2/3) ── */
     @keyframes drift-a { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(16px, -12px); } }
     @keyframes drift-b { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-14px, 10px); } }
@@ -318,7 +329,8 @@
 </nav>
 
 <!-- ── HERO · H2 split diptych, left-biased ── -->
-<section style="position: relative; padding: 104px 24px 136px;">
+<section style="position: relative; isolation: isolate; padding: 104px 24px 136px;">
+  <div class="hero-spot" aria-hidden="true"></div>
   <div class="hero-grid">
 
     <div class="hero-enter">
@@ -712,6 +724,19 @@
   </div>
 </footer>
 
+
+<script>
+(function() {
+  var spot = document.querySelector('.hero-spot');
+  if (!spot || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hero = spot.parentElement;
+  hero.addEventListener('pointermove', function(e) {
+    var r = hero.getBoundingClientRect();
+    spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+})();
+</script>
 
 <script>
 (function() {
