@@ -54,6 +54,7 @@
       --space-xl: 48px;  --space-2xl: 72px; --space-3xl: 112px;
       /* motion */
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
       --dur-1: 120ms; --dur-2: 240ms; --dur-3: 560ms;
       /* shape */
       --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px;
@@ -111,8 +112,8 @@
     /* ── HERO MOTIF · dots stay inside the boundary (motion primitive 2/3) ── */
     @keyframes drift-a { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(16px, -12px); } }
     @keyframes drift-b { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-14px, 10px); } }
-    .motif-dot-a { animation: drift-a 16s ease-in-out infinite; }
-    .motif-dot-b { animation: drift-b 21s ease-in-out infinite; }
+    .motif-dot-a { animation: drift-a 16s var(--ease-in-out) infinite; }
+    .motif-dot-b { animation: drift-b 21s var(--ease-in-out) infinite; }
 
     /* ── NAV · N5 floating pill ── */
     .nav-pill {
