@@ -17,6 +17,7 @@
      * features: F3 ledger rows (rules = every row) · tone: technical-quiet
      * anchor hues: craft blue 259 + wonder amber 70 (dual-brand, semantic roles)
      * motion: hero entrance · motif drift · state transitions (3 primitives)
+     * pre-emit critique: P4 H4 E4 S4 R4 V5 · contrast: pass (40-41)
      * redesign of pre-Hallmark page · 2026-07-18 */
 
     :root {
@@ -73,6 +74,7 @@
       outline-offset: 3px;
       border-radius: var(--radius-sm);
     }
+    a:active { opacity: 0.8; }
     .skip-link {
       position: absolute; left: var(--space-sm); top: -48px;
       z-index: calc(var(--z-nav) + 1);
@@ -183,8 +185,8 @@
       letter-spacing: -0.02em;
     }
     .ledger-title svg { flex-shrink: 0; }
-    .ledger-desc { font-size: 14px; color: var(--color-ink-2); line-height: 1.7; margin-top: 8px; max-width: 56em; }
-    .ledger-note { font-size: 13px; color: var(--color-ink-3); line-height: 1.75; font-style: italic; margin-top: 10px; max-width: 60em; text-wrap: pretty; }
+    .ledger-desc { font-size: 14px; color: var(--color-ink-2); line-height: 1.7; margin-top: 8px; max-width: 70ch; }
+    .ledger-note { font-size: 13px; color: var(--color-ink-3); line-height: 1.75; font-style: italic; margin-top: 10px; max-width: 74ch; text-wrap: pretty; }
     .ledger-side {
       display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs);
       padding-top: 5px;
@@ -553,7 +555,7 @@
 
       <a href="https://chunk-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="util-card">
         <div style="width: 36px; height: 36px; background: var(--color-craft-dim); border: 1px solid var(--color-craft-line); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
             <rect x="3" y="2" width="14" height="16" rx="2"></rect>
             <path d="M7 7h6M7 10h4M7 13h2"></path>
             <path d="M13 11v4M11 13h4" stroke-width="1.6"></path>
@@ -563,12 +565,12 @@
           <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Loan Calculator</div>
           <div style="font-size: 12px; color: var(--color-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Calculate loan payments instantly in your browser</div>
         </div>
-        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
       </a>
 
       <a href="https://chunk-jp.github.io/bmi-calculator/" target="_blank" rel="noopener" class="util-card">
         <div style="width: 36px; height: 36px; background: var(--color-craft-dim); border: 1px solid var(--color-craft-line); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
             <circle cx="10" cy="5" r="2.5"></circle>
             <path d="M6 18v-5a4 4 0 018 0v5"></path>
             <path d="M4 18h12"></path>
@@ -578,12 +580,12 @@
           <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">BMI Calculator</div>
           <div style="font-size: 12px; color: var(--color-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Quick body mass index calculation, no data stored</div>
         </div>
-        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
       </a>
 
       <a href="https://chunk-jp.github.io/encryption-tool/" target="_blank" rel="noopener" class="util-card">
         <div style="width: 36px; height: 36px; background: var(--color-craft-dim); border: 1px solid var(--color-craft-line); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <svg viewBox="0 0 20 20" fill="none" stroke="var(--color-craft)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
             <rect x="5" y="9" width="10" height="8" rx="1.5"></rect>
             <path d="M7 9V7a3 3 0 016 0v2"></path>
             <circle cx="10" cy="13.5" r="1" fill="var(--color-craft)" stroke="none"></circle>
@@ -593,7 +595,7 @@
           <div style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px;">Text Encryption Tool</div>
           <div style="font-size: 12px; color: var(--color-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Encrypt and decrypt text directly in your browser</div>
         </div>
-        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
+        <svg viewBox="0 0 12 12" fill="none" stroke="var(--color-craft-2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="11" height="11" style="flex-shrink: 0;" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
       </a>
 
     </div>
