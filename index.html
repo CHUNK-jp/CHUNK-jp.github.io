@@ -8,13 +8,77 @@
   <meta name="google-site-verification" content="95r7tjU2_62CnA-i4NQ9ec42nfMWHtnusEBP5__3Mmg" />
   <title>CHUNK-jp — Privacy-first Mac tools & browser utilities</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* Hallmark · genre: modern-minimal · macrostructure: Ecosystem Index
+     * nav: N5 floating pill (content-sized · blur+saturate · top-centred)
+     * footer: Ft4 dense colophon (mono · log-style · links inline)
+     * hero: H2 split diptych (7/5 · right = Tier-B SVG "data stays inside" · divider = negative space)
+     * features: F3 ledger rows (rules = every row) · tone: technical-quiet
+     * anchor hues: craft blue 259 + wonder amber 70 (dual-brand, semantic roles)
+     * motion: hero entrance · motif drift · state transitions (3 primitives)
+     * redesign of pre-Hallmark page · 2026-07-18 */
+
+    :root {
+      /* surfaces & ink — dark paper, blue-leaning tint */
+      --color-paper: oklch(14% 0.008 265);
+      --color-paper-2: oklch(17.5% 0.009 265);
+      --color-paper-3: oklch(21% 0.01 265);
+      --color-ink: oklch(97% 0.003 260);
+      --color-ink-2: oklch(76% 0.012 260);   /* secondary body — ≥8:1 on paper */
+      --color-ink-3: oklch(66% 0.014 260);   /* muted meta — ≥4.5:1 on paper */
+      --color-rule: oklch(26% 0.01 265);
+      --color-rule-2: oklch(34% 0.012 265);
+      /* craft (blue) */
+      --color-craft: oklch(62% 0.19 259);            /* icons, borders, large type */
+      --color-craft-2: oklch(72% 0.13 254);          /* small accent text, button fills */
+      --color-craft-dim: oklch(62% 0.19 259 / 0.12);
+      --color-craft-line: oklch(62% 0.19 259 / 0.3);
+      /* wonder (amber) */
+      --color-wonder: oklch(77% 0.16 70);
+      --color-wonder-2: oklch(84% 0.15 84);
+      --color-wonder-dim: oklch(77% 0.16 70 / 0.1);
+      --color-wonder-line: oklch(77% 0.16 70 / 0.3);
+      --color-ink-3-warm: oklch(68% 0.045 80);       /* muted meta on wonder rows */
+      --color-paper-wonder: oklch(15.5% 0.018 80);
+      /* shared */
+      --color-accent-ink: oklch(15% 0.015 80);       /* dark ink on accent fills — ≥7:1 */
+      --color-focus: oklch(72% 0.13 254);
+      /* type */
+      --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      /* 4-pt spacing scale */
+      --space-3xs: 4px;  --space-2xs: 8px;  --space-xs: 12px;
+      --space-sm: 16px;  --space-md: 24px;  --space-lg: 32px;
+      --space-xl: 48px;  --space-2xl: 72px; --space-3xl: 112px;
+      /* motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-1: 120ms; --dur-2: 240ms; --dur-3: 560ms;
+      /* shape */
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px;
+      --z-nav: 100;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
     a { text-decoration: none; color: inherit; }
-    ::selection { background: rgba(59,130,246,0.25); color: #FAFAFA; }
+    ::selection { background: var(--color-craft-line); color: var(--color-ink); }
+
+    /* focus — visible, instant, everywhere */
+    :focus-visible {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+    .skip-link {
+      position: absolute; left: var(--space-sm); top: -48px;
+      z-index: calc(var(--z-nav) + 1);
+      background: var(--color-craft-2); color: var(--color-accent-ink);
+      font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: var(--radius-sm);
+    }
+    .skip-link:focus-visible { top: var(--space-sm); }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
@@ -28,20 +92,39 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── NAV ── */
-    .nav-link {
-      font-size: 14px; color: #71717A; padding: 6px 12px; border-radius: 6px;
-      transition: color 0.15s, background 0.15s;
+    /* ── NAV · N5 floating pill ── */
+    .nav-pill {
+      position: fixed; top: var(--space-sm); left: 0; right: 0;
+      margin-inline: auto; width: fit-content;
+      max-width: calc(100% - var(--space-md));
+      display: flex; align-items: center; gap: var(--space-3xs);
+      padding: 6px 8px 6px 14px;
+      background: color-mix(in oklch, var(--color-paper) 78%, transparent);
+      backdrop-filter: blur(14px) saturate(130%);
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      border: 1px solid var(--color-rule);
+      border-radius: var(--radius-pill);
+      z-index: var(--z-nav);
+      white-space: nowrap;
     }
-    .nav-link:hover { color: #FAFAFA; background: #111113; }
-
-    .btn-gh {
+    .nav-pill-brand {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #111113; border: 1px solid #27272A; color: #A1A1AA;
-      font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px;
-      transition: border-color 0.15s, color 0.15s;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+      letter-spacing: -0.01em; margin-right: var(--space-2xs);
     }
-    .btn-gh:hover { border-color: #3F3F46; color: #FAFAFA; }
+    .nav-pill-sep { width: 1px; height: 16px; background: var(--color-rule); margin-right: var(--space-2xs); flex-shrink: 0; }
+    .nav-link {
+      font-size: 13px; color: var(--color-ink-3); padding: 7px 11px; border-radius: var(--radius-pill);
+      transition: color var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out);
+    }
+    .nav-link:hover { color: var(--color-ink); background: var(--color-paper-3); }
+    .btn-gh {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: var(--radius-pill);
+      color: var(--color-ink-3); margin-left: var(--space-3xs);
+      transition: color var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out);
+    }
+    .btn-gh:hover { color: var(--color-ink); background: var(--color-paper-3); }
 
     /* ── HERO SCROLL ARROW ── */
     .scroll-arrow { display: inline-flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity 0.15s; }
@@ -147,14 +230,6 @@
       animation: anim-fade-up 0.6s ease forwards;
     }
 
-    /* ── ANIM: sticky nav scrolled state ── */
-    nav.scrolled > div {
-      background: rgba(9,9,11,0.75) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    }
-
     /* ── ANIM: scroll-in reveal ── */
     .anim-observe {
       opacity: 0;
@@ -207,35 +282,30 @@
 </head>
 <body>
 
-<!-- ── NAVIGATION ── -->
-<nav style="position: sticky; top: 0; z-index: 100;">
-  <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
-      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-        <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
-            <rect x="1" y="1" width="6" height="6" rx="1"></rect>
-            <rect x="9" y="1" width="6" height="6" rx="1"></rect>
-            <rect x="1" y="9" width="6" height="6" rx="1"></rect>
-            <rect x="9" y="9" width="6" height="6" rx="1"></rect>
-          </svg>
-        </div>
-        <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
-      </div>
-      <div class="nav-links-center" style="display: flex; align-items: center; gap: 4px; flex: 1;">
-        <a href="#craft" class="nav-link">CHUNK-jp Craft</a>
-        <a href="#wonder" class="nav-link">CHUNK-jp Wonder</a>
-        <a href="#browser-tools" class="nav-link">Browser Utilities</a>
-        <a href="#philosophy" class="nav-link">Philosophy</a>
-        <a href="#who-for" class="nav-link">Who it's for</a>
-        <a href="#devlog" class="nav-link">DevLog</a>
-      </div>
-      <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="btn-gh">
-        <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-        GitHub
-      </a>
-    </div>
+<a href="#craft" class="skip-link">Skip to content</a>
+
+<!-- ── NAVIGATION · N5 floating pill ── -->
+<nav class="nav-pill" aria-label="Primary">
+  <a href="#" class="nav-pill-brand" aria-label="CHUNK-jp — back to top">
+    <svg viewBox="0 0 16 16" width="13" height="13" fill="var(--color-craft)" aria-hidden="true">
+      <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+      <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+      <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+      <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+    </svg>
+    chunk-jp
+  </a>
+  <span class="nav-pill-sep" aria-hidden="true"></span>
+  <div class="nav-links-center" style="display: flex; align-items: center; gap: 2px;">
+    <a href="#craft" class="nav-link">Craft</a>
+    <a href="#wonder" class="nav-link">Wonder</a>
+    <a href="#browser-tools" class="nav-link">Utilities</a>
+    <a href="#philosophy" class="nav-link">Philosophy</a>
+    <a href="#devlog" class="nav-link">DevLog</a>
   </div>
+  <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="btn-gh" aria-label="CHUNK-jp on GitHub">
+    <svg viewBox="0 0 16 16" fill="currentColor" width="15" height="15" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+  </a>
 </nav>
 
 <!-- ── HERO ── -->
