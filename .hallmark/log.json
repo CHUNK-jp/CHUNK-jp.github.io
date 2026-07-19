@@ -6,7 +6,7 @@
     "theme_axes": "dark / grotesk-sans (Inter Tight) / cool-blue + warm-amber (semantic dual accent)",
     "enrichment": "none — typographic B-stagger hero (boundary-motif SVG retired 2026-07-19)",
     "hero": "B-stagger typographic · HP3 cursor spotlight (19% craft mix, pinned fallback)",
-    "overlap": "sheet-cover x2 (hero->craft · utilities->philosophy), reduced-motion: plain flow",
+    "overlap": "sheet-cover x2 (hero->craft · utilities->philosophy) + scroll-linked CHUNK-jp wordmark in utilities scope, reduced-motion: plain flow",
     "nav": "N5 floating pill",
     "footer": "Ft4 dense colophon",
     "brief": "CHUNK-jp portal · redesign of pre-Hallmark landing page, copy/IA/dual-brand preserved"
