@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "date": "2026-07-19",
+      "repo": "chunk-jp.github.io",
+      "summary": "Updated .gitignore to exclude local Hallmark skill artifacts while preserving project memory logs for development reference.",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/fb7d466d8d8b465953a60f3e6cf9b9d7d9c13dae"
+    },
+    {
+      "date": "2026-07-19",
+      "repo": "chunk-jp.github.io",
+      "summary": "Tokenized effect-layer colors for sheet shadow and watermark to improve design consistency across the portal.",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/0c55f2943cddc63387535c16218a1ecb9eeaca81"
+    },
+    {
+      "date": "2026-07-19",
+      "repo": "chunk-jp.github.io",
+      "summary": "Fixed mobile viewport layout issues on the portal: disabled sticky pinning and spotlight effects below 640px, prevented overflow and awkward text wrapping on 375px widths.",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/ff141d6a8abd3562e5e271f53062322919f86a4c"
+    },
+    {
+      "date": "2026-07-19",
+      "repo": "chunk-jp.github.io",
+      "summary": "Added scroll-linked watermark behind pinned Utilities section, scaling with view-timeline to create depth as Philosophy sheet overlays it during scroll.",
+      "commitUrl": "https://github.com/CHUNK-jp/CHUNK-jp.github.io/commit/c320bb312d7c261cc10edb3c10346b5946db7fa0"
+    },
+    {
       "date": "2026-07-15",
       "repo": "pulsejournal",
       "summary": "Fixed a unit-notation inconsistency in PulseJournal's Japanese output—the hero tone was occasionally expanding abbreviated units like \"bpm\" into English words. Added an explicit instruction to preserve units as-is.",
@@ -188,7 +212,7 @@
     }
   ],
   "state": {
-    "chunk-jp.github.io": "83df28e0c6f0b501346590d6b29cb29fdc53e78e",
+    "chunk-jp.github.io": "d2f8c789d7939359b81ad37f01c57d3a9c017f2a",
     "attic": "fa191a1e72af0070e46c6b4304dd7ed9b46d7fd1",
     "mirrorhealth": "692ebf129956f901e0f78752fff37eca99bb04ef",
     "daily-pulse": "42d2704ab847625f1e92a15f6e191814f0294585",
