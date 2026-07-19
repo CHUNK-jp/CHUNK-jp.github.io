@@ -1,0 +1,6 @@
+# Hallmark design skill (installed via `npx skills add nutlope/hallmark`)
+.agents/skills/hallmark/
+.claude/skills/hallmark
+skills-lock.json
+
+# Hallmark project memory is committed; the skill itself is not
