@@ -197,9 +197,10 @@
     }
     .hero-made {
       position: absolute; z-index: 2; right: clamp(24px, 5vw, 64px); bottom: 44px;
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px;
       font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-3); margin: 0;
     }
+    .hero-made span { white-space: nowrap; }
 
     /* ── HERO · HP3 cursor spotlight (hero-scoped, input-driven feedback) ── */
     .hero-spot {
@@ -383,7 +384,19 @@
       .ledger-side { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-md); padding-top: 0; }
     }
 
+    /* touch devices: a spotlight that can't follow a pointer is just a stain */
+    @media (hover: none) {
+      .hero-spot { display: none; }
+    }
+
     @media (max-width: 640px) {
+      /* overlap theatre off below 40rem — plain flow, per responsive discipline */
+      .hero-pin { position: relative; min-height: auto; }
+      .pin-under { position: relative; min-height: auto; padding-top: 0; }
+      .sheet-cover { border-top: 0; border-radius: 0; box-shadow: none; }
+      .wm { display: none; }
+      .hero-spot { display: none; }
+      .hero-oring { width: 56vw; bottom: -12%; left: -10%; }
       .util-grid { grid-template-columns: minmax(0, 1fr) !important; }
       .who-grid { grid-template-columns: minmax(0, 1fr) !important; }
       .nav-links-center { display: none !important; }
