@@ -46,6 +46,8 @@
       /* shared */
       --color-accent-ink: oklch(15% 0.015 80);       /* dark ink on accent fills — ≥7:1 */
       --color-focus: oklch(72% 0.13 254);
+      --color-shadow: oklch(0% 0 0 / 0.55);          /* sheet-overlap lift shadow */
+      --color-wm: oklch(97% 0.003 260 / 0.05);       /* scroll-linked wordmark */
       /* type */
       --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -108,7 +110,7 @@
       background: var(--color-paper);
       border-top: 1px solid var(--color-craft-line);
       border-radius: 28px 28px 0 0;
-      box-shadow: 0 -24px 48px -32px oklch(0% 0 0 / 0.55);
+      box-shadow: 0 -24px 48px -32px var(--color-shadow);
     }
     .pin-under {
       position: sticky; top: 0; z-index: 1;
@@ -125,7 +127,7 @@
       font-family: var(--font-display); font-weight: 900;
       font-size: clamp(140px, 24vw, 360px);
       letter-spacing: -0.04em; white-space: nowrap;
-      color: oklch(97% 0.003 260 / 0.05);
+      color: var(--color-wm);
       pointer-events: none; user-select: none;
     }
     @supports (animation-timeline: view()) {
