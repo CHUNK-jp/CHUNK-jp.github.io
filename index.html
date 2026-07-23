@@ -47,7 +47,7 @@
       --color-accent-ink: oklch(15% 0.015 80);       /* dark ink on accent fills — ≥7:1 */
       --color-focus: oklch(72% 0.13 254);
       --color-shadow: oklch(0% 0 0 / 0.55);          /* sheet-overlap lift shadow */
-      --color-wm: oklch(97% 0.003 260 / 0.05);       /* scroll-linked wordmark */
+      --color-wm: oklch(97% 0.003 260 / 0.10);       /* scroll-linked wordmark */
       /* type */
       --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -103,7 +103,7 @@
       position: sticky; top: 0; z-index: 1;
       isolation: isolate; overflow: clip;
       padding: 104px 24px 72px;
-      min-height: 100dvh;
+      min-height: min(100dvh, 960px);
     }
     .sheet-cover {
       position: relative; z-index: 2;
@@ -160,13 +160,13 @@
     .hero-h1 {
       position: relative; z-index: 2;
       font-family: var(--font-display);
-      font-size: clamp(52px, 9.6vw, 148px);
+      font-size: clamp(52px, 9.6vw, 165px);
       font-weight: 800; line-height: 0.97; letter-spacing: -0.02em;
       overflow-wrap: anywhere; min-width: 0;
-      margin: clamp(40px, 13vh, 136px) 0 0 clamp(0px, 6vw, 88px);
+      margin: clamp(40px, 13vh, 136px) 0 0 clamp(0px, 6vw, 106px);
     }
-    .hero-h1 .hl2 { display: block; margin-left: 1.1em; }
-    .hero-h1 .hl3 { display: block; margin-left: 3.1em; }
+    .hero-h1 .hl2 { display: block; margin-left: 1.1em; white-space: nowrap; }
+    .hero-h1 .hl3 { display: block; margin-left: 3.1em; white-space: nowrap; }
     .hero-dot {
       display: inline-block; width: 0.16em; aspect-ratio: 1;
       border-radius: 50%; background: var(--color-wonder); margin-left: 0.06em;
@@ -376,14 +376,19 @@
       .hero-h1 { margin: 16px 0 0 0; }
       .hero-h1 .hl2 { margin-left: 0.55em; }
       .hero-h1 .hl3 { margin-left: 1.4em; }
-      .hero-cta-pos { position: static; display: inline-flex; margin: var(--space-lg) 0 0 clamp(0px, 6vw, 88px); }
-      .hero-lede { position: static; margin: var(--space-md) 0 0 clamp(0px, 6vw, 88px); }
-      .hero-made { position: static; display: flex; margin: var(--space-lg) 0 0 clamp(0px, 6vw, 88px); }
+      .hero-cta-pos { position: static; display: inline-flex; margin: var(--space-lg) 0 0 clamp(0px, 6vw, 106px); }
+      .hero-lede { position: static; margin: var(--space-md) 0 0 clamp(0px, 6vw, 106px); }
+      .hero-made { position: static; display: flex; margin: var(--space-lg) 0 0 clamp(0px, 6vw, 106px); }
       .hero-oring { width: 64vw; bottom: -18%; left: -8%; }
       .hero-bdot { width: 36px; right: 10%; top: 12%; }
       .phi-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
       .ledger-row { grid-template-columns: 56px minmax(0, 1fr); }
       .ledger-side { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-md); padding-top: 0; }
+      /* overlap theatre off at the same breakpoint content reflows to static — per responsive discipline */
+      .hero-pin { position: relative; min-height: auto; }
+      .pin-under { position: relative; min-height: auto; padding-top: 0; }
+      .sheet-cover { border-top: 0; border-radius: 0; box-shadow: none; }
+      .wm { display: none; }
     }
 
     /* touch devices: a spotlight that can't follow a pointer is just a stain */
@@ -392,11 +397,6 @@
     }
 
     @media (max-width: 640px) {
-      /* overlap theatre off below 40rem — plain flow, per responsive discipline */
-      .hero-pin { position: relative; min-height: auto; }
-      .pin-under { position: relative; min-height: auto; padding-top: 0; }
-      .sheet-cover { border-top: 0; border-radius: 0; box-shadow: none; }
-      .wm { display: none; }
       .hero-spot { display: none; }
       .hero-oring { width: 56vw; bottom: -12%; left: -10%; }
       .util-grid { grid-template-columns: minmax(0, 1fr) !important; }
