@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582357233567372"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevLog — CHUNK-jp</title>
+  <meta name="description" content="The full development log across all CHUNK-jp tools — every commit-level update, unfiltered, pulled straight from GitHub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    ::selection { background: rgba(59,130,246,0.25); color: #FAFAFA; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
+
+    .nav-link { font-size: 14px; color: #71717A; text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-link:hover { color: #FAFAFA; background: #111113; }
+    .nav-link-active { color: #FAFAFA; background: #111113; }
+
+    .btn-gh { display: inline-flex; align-items: center; gap: 8px; background: #111113; border: 1px solid #27272A; color: #A1A1AA; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px; text-decoration: none; flex-shrink: 0; transition: border-color 0.15s, color 0.15s; }
+    .btn-gh:hover { border-color: #3F3F46; color: #FAFAFA; }
+
+    .footer-link { font-size: 13px; color: #71717A; text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: #FAFAFA; }
+
+    .footer-gh { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #71717A; text-decoration: none; background: #111113; border: 1px solid #27272A; border-radius: 7px; padding: 7px 14px; transition: color 0.15s, border-color 0.15s; }
+    .footer-gh:hover { color: #FAFAFA; border-color: #3F3F46; }
+
+    /* ── DEVLOG LIST ── */
+    .devlog-item {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      background: #0F0F12; border: 1px solid #1E1E23; border-radius: 12px;
+      padding: 16px 20px; text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .devlog-item:hover { background: #131316; border-color: #27272A; }
+    .devlog-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex-shrink: 0; min-width: 128px; }
+    .devlog-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #52525B; }
+    .devlog-badge {
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+      border-radius: 100px; padding: 3px 10px; white-space: nowrap;
+    }
+    .devlog-badge-craft { color: #60A5FA; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); }
+    .devlog-badge-wonder { color: #FBBF24; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.28); }
+    .devlog-badge-neutral { color: #A1A1AA; background: #18181B; border: 1px solid #27272A; }
+    .devlog-summary { font-size: 14px; color: #A1A1AA; line-height: 1.7; margin: 0; flex: 1; min-width: 200px; }
+
+    .devlog-empty { font-size: 14px; color: #52525B; padding: 32px 0; text-align: center; }
+
+    .btn-loadmore {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #18181B; border: 1px solid #27272A; color: #A1A1AA;
+      font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 8px;
+      font-family: 'Inter', system-ui, sans-serif; cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-loadmore:hover { border-color: #3F3F46; color: #FAFAFA; }
+
+    .devlog-stats { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #52525B; }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+      .nav-inner { padding: 0 16px !important; gap: 12px !important; }
+      .nav-links-wrap { display: none !important; }
+      .page-header { padding: 56px 20px 40px !important; }
+      .page-h1 { font-size: 38px !important; }
+      .content-wrap { padding: 0 20px 80px !important; }
+      .footer-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+      .footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+    }
+
+    @media (max-width: 560px) {
+      .devlog-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .devlog-meta { flex-direction: row; align-items: center; min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div style="min-height: 100vh; background: #09090B; color: #FAFAFA; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column;">
+
+  <!-- ── NAVIGATION ── -->
+  <nav style="position: sticky; top: 0; z-index: 100;">
+    <div style="background: rgba(9,9,11,0.88); border-bottom: 1px solid #18181B; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+      <div class="nav-inner" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: 64px; gap: 40px;">
+        <a href="index.html" style="display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; color: inherit;">
+          <div style="width: 32px; height: 32px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 16 16" width="13" height="13" fill="#3B82F6">
+              <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+              <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+              <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+              <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+            </svg>
+          </div>
+          <span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-family: 'JetBrains Mono', monospace;">chunk-jp</span>
+        </a>
+        <div class="nav-links-wrap" style="display: flex; align-items: center; gap: 4px; flex: 1;">
+          <a href="index.html#craft" class="nav-link">Mac Tools</a>
+          <a href="index.html#browser-tools" class="nav-link">Browser Utilities</a>
+          <a href="index.html#philosophy" class="nav-link">Philosophy</a>
+          <a href="devlog.html" class="nav-link nav-link-active">DevLog</a>
+        </div>
+        <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="btn-gh">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main style="flex: 1; display: flex; flex-direction: column;">
+
+    <!-- ── PAGE HEADER ── -->
+    <section class="page-header" style="position: relative; padding: 80px 24px 56px; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(59,130,246,0.09) 0%, transparent 65%); pointer-events: none;"></div>
+      <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);"></div>
+      <div style="position: relative; max-width: 640px; margin: 0 auto; text-align: center;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #111113; border: 1px solid #27272A; border-radius: 6px; padding: 4px 12px; margin-bottom: 28px;">
+          <span style="font-size: 11px; color: #52525B; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em;">DevLog</span>
+        </div>
+        <h1 class="page-h1" style="font-size: 52px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 18px;">Everything, as it's built</h1>
+        <p style="font-size: 17px; color: #71717A; line-height: 1.7;">Every commit-level update across all CHUNK-jp tools, pulled automatically from GitHub. No filtering, no editing — just the log.</p>
+        <p id="devlog-stats" class="devlog-stats" style="margin-top: 20px;"></p>
+      </div>
+    </section>
+
+    <!-- ── CONTENT ── -->
+    <div class="content-wrap" style="max-width: 820px; margin: 0 auto; padding: 0 24px 120px; width: 100%;">
+      <div id="devlog-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+      <p id="devlog-empty" class="devlog-empty" style="display: none;">No entries yet — check back soon.</p>
+      <div style="display: flex; justify-content: center; margin-top: 28px;">
+        <button id="load-more-btn" class="btn-loadmore" style="display: none;" type="button">
+          Load more
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M2 4.5l4 4 4-4"></path></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer style="border-top: 1px solid #18181B; padding: 52px 24px 44px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <div style="width: 30px; height: 30px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="#3B82F6">
+                <rect x="1" y="1" width="6" height="6" rx="1"></rect>
+                <rect x="9" y="1" width="6" height="6" rx="1"></rect>
+                <rect x="1" y="9" width="6" height="6" rx="1"></rect>
+                <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+              </svg>
+            </div>
+            <span style="font-size: 14px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;">chunk-jp</span>
+          </div>
+          <p style="font-size: 13px; color: #52525B; max-width: 280px; line-height: 1.7; margin-bottom: 18px;">Privacy-first Mac tools and browser utilities. All local. All free. All open source.</p>
+          <a href="https://github.com/chunk-jp" target="_blank" rel="noopener" class="footer-gh">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            github.com/chunk-jp
+          </a>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">Mac Tools</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <a href="https://chunk-jp.github.io/attic/" target="_blank" rel="noopener" class="footer-link">Attic</a>
+            <a href="https://chunk-jp.github.io/mirrorhealth/" target="_blank" rel="noopener" class="footer-link">MirrorHealth</a>
+            <a href="https://chunk-jp.github.io/daily-pulse/" target="_blank" rel="noopener" class="footer-link">Daily Pulse</a>
+            <a href="https://chunk-jp.github.io/agent-watch/" target="_blank" rel="noopener" class="footer-link">AgentWatch</a>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 11px; font-weight: 600; color: #52525B; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;">More</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <a href="https://chunk-jp.github.io/loan-calculator/" target="_blank" rel="noopener" class="footer-link">Loan Calculator</a>
+            <a href="https://chunk-jp.github.io/bmi-calculator/" target="_blank" rel="noopener" class="footer-link">BMI Calculator</a>
+            <a href="https://chunk-jp.github.io/encryption-tool/" target="_blank" rel="noopener" class="footer-link">Text Encryption Tool</a>
+            <span style="display: block; width: 1px; height: 4px;"></span>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom" style="border-top: 1px solid #18181B; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div style="font-size: 13px; color: #3F3F46;">© 2026 CHUNK-jp · All tools free and open source.</div>
+        <div style="font-size: 12px; color: #27272A; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em;">privacy-first · local-first · macOS + web</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  var CRAFT_REPOS = ['attic', 'mirrorhealth', 'daily-pulse', 'agent-watch'];
+  var WONDER_REPOS = ['pulsejournal', 'neiro'];
+  var PAGE_SIZE = 10;
+
+  var list = document.getElementById('devlog-list');
+  var emptyMsg = document.getElementById('devlog-empty');
+  var loadMoreBtn = document.getElementById('load-more-btn');
+  var statsEl = document.getElementById('devlog-stats');
+
+  var allEntries = [];
+  var visibleCount = 0;
+
+  function badgeClassFor(repo) {
+    if (CRAFT_REPOS.indexOf(repo) !== -1) return 'devlog-badge-craft';
+    if (WONDER_REPOS.indexOf(repo) !== -1) return 'devlog-badge-wonder';
+    return 'devlog-badge-neutral';
+  }
+
+  function isValidEntry(entry) {
+    if (!entry || typeof entry !== 'object') return false;
+    if (typeof entry.date !== 'string' || !entry.date) return false;
+    if (typeof entry.repo !== 'string' || !entry.repo) return false;
+    if (typeof entry.summary !== 'string' || !entry.summary) return false;
+    if (typeof entry.commitUrl !== 'string' || entry.commitUrl.indexOf('https://github.com/') !== 0) return false;
+    return true;
+  }
+
+  function renderEntry(entry) {
+    var item = document.createElement('a');
+    item.className = 'devlog-item';
+    item.href = entry.commitUrl;
+    item.target = '_blank';
+    item.rel = 'noopener';
+
+    var meta = document.createElement('div');
+    meta.className = 'devlog-meta';
+
+    var dateEl = document.createElement('span');
+    dateEl.className = 'devlog-date';
+    dateEl.textContent = entry.date;
+
+    var badgeEl = document.createElement('span');
+    badgeEl.className = 'devlog-badge ' + badgeClassFor(entry.repo);
+    badgeEl.textContent = entry.repo;
+
+    meta.appendChild(dateEl);
+    meta.appendChild(badgeEl);
+
+    var summaryEl = document.createElement('p');
+    summaryEl.className = 'devlog-summary';
+    summaryEl.textContent = entry.summary;
+
+    item.appendChild(meta);
+    item.appendChild(summaryEl);
+    return item;
+  }
+
+  function renderMore() {
+    var nextSlice = allEntries.slice(visibleCount, visibleCount + PAGE_SIZE);
+    nextSlice.forEach(function(entry) {
+      list.appendChild(renderEntry(entry));
+    });
+    visibleCount += nextSlice.length;
+    loadMoreBtn.style.display = visibleCount < allEntries.length ? 'inline-flex' : 'none';
+  }
+
+  loadMoreBtn.addEventListener('click', renderMore);
+
+  fetch('devlog.json')
+    .then(function(res) {
+      if (!res.ok) return null;
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data || !data.entries || !Array.isArray(data.entries)) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+      var entries = data.entries.filter(isValidEntry);
+      entries.sort(function(a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+      allEntries = entries;
+
+      if (allEntries.length === 0) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+
+      var repoCount = new Set(allEntries.map(function(e) { return e.repo; })).size;
+      statsEl.textContent = allEntries.length + ' updates across ' + repoCount + ' repositories';
+
+      renderMore();
+    })
+    .catch(function() {
+      emptyMsg.style.display = 'block';
+    });
+})();
+</script>
+</body>
+</html>
